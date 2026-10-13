@@ -1,0 +1,145 @@
+.news-feed .dashboard-div{
+    width: 90%;
+    min-height: 800px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 170px 300px 300px;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 1vw;
+    grid-template-areas:
+    "requests resolves pendingToday resolvedToday"
+    "requestsLast7Days requestsLast7Days requestsLast7Days requestsDistributionPie"
+    "requestsPerBuilding requestsPerBuilding requestsPerBuilding requestsPerBuilding";
+}
+
+.news-feed .dashboard-div .requests{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: requests;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+   
+}
+.news-feed .dashboard-div .requests h5{
+    font-family: var(--font-primary);
+      font-size: clamp(0.7rem, 1.4vw, 1.4em);
+    color: var(--black);
+    font-weight: 600;
+}
+.news-feed .dashboard-div .requests p{
+    font-family: var(--font-primary);
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    color: var(--black);
+    font-weight: 500;
+}
+.news-feed .dashboard-div .resolves{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: resolves;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     border-radius: 5px;
+     text-align: center;
+   
+}
+.news-feed .dashboard-div .resolves h5{
+    font-family: var(--font-primary);
+     font-size: clamp(0.7rem, 1.4vw, 1.4em);
+    color: var(--black);
+    font-weight: 600;
+}
+.news-feed .dashboard-div .resolves p{
+    font-family: var(--font-primary);
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    color: var(--black);
+}
+.news-feed .dashboard-div .pendingToday{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: pendingToday;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     border-radius: 5px;
+     text-align: center;
+   
+}
+.news-feed .dashboard-div .pendingToday h5{
+    font-family: var(--font-primary);
+      font-size: clamp(0.7rem, 1.4vw, 1.4em);
+    color: var(--black);
+    font-weight: 600;
+}
+.news-feed .dashboard-div .pendingToday p{
+    font-family: var(--font-primary);
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    color: var(--black);
+}
+
+.news-feed .dashboard-div .resolvedToday{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: resolvedToday;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     border-radius: 5px;
+     text-align: center;
+    
+}
+.news-feed .dashboard-div .resolvedToday h5{
+    font-family: var(--font-primary);
+      font-size: clamp(0.7rem, 1.4vw, 1.4em);
+    font-weight: 600;
+}
+.news-feed .dashboard-div .resolvedToday p{
+    font-family: var(--font-primary);
+   font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    color: var(--black);
+}
+
+.news-feed .dashboard-div .requestsLast7Days{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: requestsLast7Days;
+     border-radius: 5px;
+    
+}
+.news-feed .dashboard-div .requestsDistributionPie{
+     width: 100% !important;
+    height: 100% !important;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: requestsDistributionPie;
+     border-radius: 5px;
+}
+.news-feed .dashboard-div .requestsPerBuilding{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 3px var(--off-white-shadow);
+    background-color: var(--white);
+    grid-area: requestsPerBuilding;
+     border-radius: 5px;
+}

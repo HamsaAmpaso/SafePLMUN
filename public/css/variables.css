@@ -1,0 +1,54 @@
+:root {
+  --deep-forest-green: #008000;
+  --deep-forest-green-shadow: #023319;
+  --light-sage: #D4E3C9;
+  --green: #7DAC5C;
+  --light-green: #E2EFE9;
+  --off-white:  #F7F8F4;
+  --off-white-shadow:  #dbd9d2;
+  --off-white-shadow-darker: #c2c9bd;
+  --yellow: #FDB813;
+  --dark-green: #002C15;
+  --gray: #97969A;
+  --heading-text: "Archivo", sans-serif;
+  --sub-text: "Inter", sans-serif;
+  --small-text: "DM Sans", sans-serif;
+  --font-primary: 'Syne', sans-serif;
+  --font-secondary: 'Plus Jakarta Sans', sans-serif;
+  --black: #0A0B0E;
+  --white: #FCFDF9;
+  --orange: #C5773A;
+  --emergency-red: #C62828;
+
+  /* Earthquake — soft natural green */
+  --earthquake-gradient: linear-gradient(
+    135deg,
+    #C8DDBB 0%,
+    #8FB878 50%,
+    #5F9148 100%
+  );
+
+  /* Fire — deeper, stronger green */
+  --fire-gradient: linear-gradient(
+    135deg,
+    #A8C98F 0%,
+    #5F9B45 50%,
+    #367536 100%
+  );
+
+  /* Violence — bold deep green */
+  --violence-gradient: linear-gradient(
+    135deg,
+    #9BC7A0 0%,
+    #4D9960 50%,
+    #176B3A 100%
+  );
+
+  /* Medical — clean vibrant green */
+  --medical-gradient: linear-gradient(
+    135deg,
+    #BFE0B8 0%,
+    #6FB66A 50%,
+    #398A4A 100%
+  );
+}

@@ -1,0 +1,123 @@
+.alert-box{
+    position: fixed;
+    height: 80%;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-500%, -50%);
+    z-index: 120;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
+    gap: 1vw;
+    text-align: center;
+    padding: clamp(1.5em, 2.5vw, 2em);
+    min-height: 400px;
+    overflow: auto;
+    min-width: 350px;
+    background-color: var(--off-white);
+  
+   
+}
+.alert-box.show{
+    transform: translate(-50%, -50%);
+}
+
+.alert-box h1{
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    color: var(--dark-green);
+    max-width: 500px;
+    
+}
+.alert-box h2{
+    font-family: var(--font-primary);
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    color: var(--black);
+    max-width: 400px;
+}
+.alert-box h3{
+    font-family: var(--font-primary);
+    font-size: clamp(0.8rem, 1.1vw, 1.1rem);
+    color: var(--black);
+    max-width: 400px;
+}
+.alert-box ul{
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    
+}
+.alert-box ul li{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.7rem, 1vw, 1rem);
+    color: var(--black);
+    max-width: 400px;
+    font-weight: 500;
+}
+.proceed{
+    width: 45%;
+    height: 8%;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    transition: all 150ms ease-out;
+}
+.proceed:hover{
+    background-color: var(--dark-green);
+}
+.alert-box{
+    scrollbar-width: thin;
+    scrollbar-color: #008000 transparent;
+}
+
+
+.alert-box::-webkit-scrollbar{
+    width: 7px;
+}
+
+
+.alert-box::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+
+.alert-box::-webkit-scrollbar-thumb{
+    background: linear-gradient(
+        180deg,
+        #004621,
+        #008000,
+        #7DAC5C
+    );
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+}
+.alert-box svg{
+    height: 15%;
+    fill: var(--dark-green);
+    min-height: 50px;
+}
+.alert-box p{
+   font-family: var(--font-secondary);
+    font-size: clamp(0.6rem, 1vw, 1rem);
+    color: var(--black);
+    max-width: 400px;
+}

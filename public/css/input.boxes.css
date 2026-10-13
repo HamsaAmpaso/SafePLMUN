@@ -1,0 +1,649 @@
+.input-box{
+    height: 80%;
+    width: 100%;
+    background-color: var(--off-white);
+    position: fixed;
+    bottom: 0%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    z-index: 55;
+    transform: translateY(900%);
+
+}
+.input-box.show{
+    transform: translateY(0%);
+}
+.input-box .error{
+   color: red;
+   text-align: center;
+   font-size: clamp(0.5rem, 1vw, 0.8rem);
+   display: none;
+   max-width: 400px;
+  
+}
+.input-box .error.errored{
+    display: flex;
+    
+}
+.input-box h2{
+    font-family: var(--font-primary);
+    font-weight: 800;
+    font-size: clamp(1rem, 2vw, 2rem);
+    text-shadow: 2px 3px 3px var(--off-white-shadow);
+    text-align: center;
+    color: var(--deep-forest-green);
+}
+.input-box label{
+    font-family: var(--font-primary);
+    font-family: var(--font-primary);
+    font-size: clamp(0.6rem, 1.1vw, 1.1rem);
+    text-shadow: 2px 3px 3px var(--off-white-shadow);
+    text-align: center;
+    font-weight: 600;
+}
+.input-box input{
+    height: 9%;
+    width: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    background-color: #F8FAF7;
+    color: var(--black);
+    font-size: clamp(0.7rem, 0.9vw, 0.9rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 200px;
+    min-height: 40px;
+    padding: clamp(0.5em, 1vw, 1em);
+    
+    
+}
+.input-box input::placeholder{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.5rem, 0.8vw, 0.8rem);
+}
+.input-box input:focus{
+    background-color: var(--light-sage);
+}
+.input-box #login-confirm{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-login{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+   min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #login-confirm:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-login:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box p{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.5rem, 0.8vw, 0.8rem);
+    color: var(--black);
+    max-width: 750px;
+    font-weight: 500;
+}
+.input-box .special{
+    color: var(--deep-forest-green);
+}
+.input-box .special:hover{
+    color: var(--dark-green);
+}
+.input-box #signup-confirm{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-signup{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #signup-confirm:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-signup:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #signup-confirm-final{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-signup-final{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #signup-confirm-final:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-signup-final:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #p{
+    max-width: 350px;
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+}
+.input-box #pp{
+    max-width: 350px;
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: clamp(0.5rem, 1vw, 0.65rem);
+}
+.input-box p span{
+    color: var(--deep-forest-green);
+}
+.input-box #report-confirm-final{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-report-final{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #report-confirm-final:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-report-final:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+#report-incident-box{
+    
+    overflow-y: auto;
+}
+#report-incident-box input{
+    height: 8%;
+}
+.input-box ul{
+    position: absolute;
+    width: 16%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--off-white);
+    z-index: 2;
+    list-style: none;
+    display: none;
+    opacity: 0.9;
+    min-width: 200px;
+    transform: translateY(25%);
+}
+.input-box ul li{
+    width: 100%;
+    height: auto;
+    padding: clamp(0.7rem, 1.2vw, 1.2em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-secondary);
+    color: var(--black);
+    font-size: clamp(0.7rem, 1vw, 1rem);
+    user-select: none;
+    transition: all 150ms ease-out;
+
+}
+.input-box ul li:hover{
+    background-color: var(--off-white-shadow);
+}
+.input-box ul.show{
+    display: flex;
+}
+
+
+
+
+.input-box #help-confirm-final{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-report-help{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}
+.input-box #help-confirm-final:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-report-help:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--black);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}   
+.input-box #finish-account{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+
+.input-box #finish-account:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+   
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+#programs-list{
+    transform: translateY(-10%);
+    text-align: center;
+}
+#locations-list-medic{
+    transform: translateY(-10%);
+    text-align: center;
+}
+
+
+
+.input-box #report-confirm-final-medic{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--deep-forest-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #cancel-report-final-medic{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--off-white);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 35px;
+    transition: all 150ms ease-out;
+}
+.input-box #report-confirm-final-medic:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: 1px solid var(--black);
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+}
+.input-box #cancel-report-final-medic:hover{
+    height: 9%;
+    width: 13%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 2px var(--off-white-shadow);
+    text-align: center;
+    border: none;
+    background-color: var(--dark-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    min-width: 170px;
+    min-height: 40px;
+    transition: all 150ms ease-out;
+}

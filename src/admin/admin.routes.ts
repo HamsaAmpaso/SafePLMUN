@@ -1,0 +1,18 @@
+import { Router } from "express";
+import { authenticationMiddleware } from "../auth/authentication.middleware.js";
+import { validator } from "../auth/auth.validation.js";
+import { asyncControllerHandler } from "../utilities/asyncHandler.js";
+import { setReportAsFalseAlarmController } from "./admin.controllers.js";
+import { authorize } from "../auth/authorization.js";
+import { seeAllUsersController } from "./admin.controllers.js";
+import { banUserController } from "./admin.controllers.js";
+import { unbanUserController } from "./admin.controllers.js";
+import { seeAllUsersStatusController } from "./admin.controllers.js";
+import { adminDashboardController } from "./admin.controllers.js";
+export const adminRouter = Router();
+adminRouter.patch('/reports', authenticationMiddleware, authorize("admin"), asyncControllerHandler(setReportAsFalseAlarmController));
+adminRouter.get('/users', authenticationMiddleware, authorize("admin"), asyncControllerHandler(seeAllUsersController));
+adminRouter.patch('/users', authenticationMiddleware, authorize("admin"), asyncControllerHandler(banUserController));
+adminRouter.patch('/users/unban', authenticationMiddleware, authorize("admin"), asyncControllerHandler(unbanUserController));
+adminRouter.get('/users/status', authenticationMiddleware, authorize("admin"), asyncControllerHandler(seeAllUsersStatusController));
+adminRouter.get('/dashboard', authenticationMiddleware, authorize("admin"), asyncControllerHandler(adminDashboardController));

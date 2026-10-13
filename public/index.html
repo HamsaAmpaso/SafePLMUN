@@ -1,0 +1,1503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafePLMUN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script type="module" src="app.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Sans&family=Inter:wght@400;500;600;700&family=Montserrat:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Amatic+SC:wght@400;700&family=Anton&family=Bangers&family=Bebas+Neue&family=Bitcount+Grid+Single:wght@100..900&family=Bitcount+Prop+Double+Ink:wght@100..900&family=Caprasimo&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Just+Another+Hand&family=Manrope:wght@200..800&family=Modak&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Syne:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/hero-section.css" />
+    <link rel="stylesheet" href="./css/about.css" />
+    <link rel="stylesheet" href="./css/our.priorities.css" />
+    <link rel="stylesheet" href="./css/our.campus.css" />
+    <link rel="stylesheet" href="./css/features.css" />
+    <link rel="stylesheet" href="./css/intersection.page.css" />
+    <link rel="stylesheet" href="./css/our.vision.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/input.boxes.css" />
+    <link rel="stylesheet" href="./css/user.side.css" />
+    <link rel="stylesheet" href="./css/admin.side.css" />
+    <link rel="stylesheet" href="./css/clinic.side.css" />
+    <link rel="stylesheet" href="./css/admin.dashboard.css" />
+    <link rel="stylesheet" href="./css/clinic.dashboard.css" />
+    <link rel="stylesheet" href="./css/news.feed.css" />
+    <link rel="stylesheet" href="./css/eathquake.alert.css" />
+    <link rel="stylesheet" href="./css/fire.alert.css" />
+    <link rel="stylesheet" href="./css/school.violence.alert.css" />
+    <link rel="stylesheet" href="./css/animations.css" />
+    <link rel="stylesheet" href="./css/mobile.css" />
+    <link rel="icon" href="./images/favicon.png" />
+  </head>
+  <body>
+    <div class="notifications-div"></div>
+    <div class="overlay"></div>
+    <div class="overlay2"></div>
+    <div class="overlay3"></div>
+    <div class="overlay4"></div>
+    <div class="overlay5"></div>
+    <nav class="nav">
+      <svg
+        id="close-nav"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+        />
+      </svg>
+      <p id="login">Log-in</p>
+      <p id="signup">Sign Up</p>
+      <p id="aboutBTN">About</p>
+      <p id="priosBTN">Priorities</p>
+    </nav>
+    <main class="main">
+      <section class="hero-section">
+        <header class="header">
+          <svg
+            id="menu"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+          >
+            <path
+              d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+            />
+          </svg>
+          <h1 class="text"><span class="inner">Safe</span>PLMUN</h1>
+          <p id="join-now-btn">JOIN NOW</p>
+        </header>
+        <div class="hero">
+          <h1>One Campus, One Community, One Priority: Safety.</h1>
+          <button class="join">JOIN NOW</button>
+        </div>
+      </section>
+      <section id="about-section" class="about">
+        <div class="boxes" id="textss">
+          <p>About SafePLMUN</p>
+          <h2>
+            SafePLMUN is a real time emergency and safety response system that
+            keeps users prepared, and supported when it matters most.
+          </h2>
+        </div>
+        <img id="sticker" src="./images/eagle.png" alt="" />
+        <div id="uno" class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="images/one.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="images/two.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="images/three.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div id="dos" class="boxes"></div>
+        <div id="tres" class="boxes"></div>
+        <div id="long-text" class="boxes">
+          <p id="about">About SafePLMUN</p>
+          <p>
+            SafePLMUN is a campus safety and emergency response system for
+            Pamantasan ng Lungsod ng Muntinlupa. It enables users to report
+            emergencies such as violence, fires, earthquakes, and medical
+            emergencies. When an emergency is reported real-time alerts, safety
+            instructions, and evacuation information are sent to the campus
+            community. SafePLMUN helps connect users and the school during
+            emergencies to create a safer and more prepared campus.
+          </p>
+        </div>
+      </section>
+      <section class="priorities">
+        <div class="prio-grid">
+          <div class="inner-prio">
+            <h2>SafePLMUN Priorities</h2>
+            <hr />
+          </div>
+          <div id="earthquake" class="prio-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L262.4 576L231.1 523.8C227 517 228.5 508.3 234.6 503.3L320 432L259.8 349.2C248.9 334.2 268 315.7 282.6 327.2L400.5 419.8C408.5 426.1 408.7 438.2 400.9 444.7L320 512L358.4 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6z"
+              />
+            </svg>
+            <div class="the-text">
+              <h2>Earthquake</h2>
+              <p>
+                Provide real time alert, safety actions to conduct, and possible
+                evacuation area after the earthquake has been reported.
+              </p>
+            </div>
+          </div>
+          <div id="fire" class="prio-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M256.5 37.6C265.8 29.8 279.5 30.1 288.4 38.5C300.7 50.1 311.7 62.9 322.3 75.9C335.8 92.4 352 114.2 367.6 140.1C372.8 133.3 377.6 127.3 381.8 122.2C382.9 120.9 384 119.5 385.1 118.1C393 108.3 402.8 96 415.9 96C429.3 96 438.7 107.9 446.7 118.1C448 119.8 449.3 121.4 450.6 122.9C460.9 135.3 474.6 153.2 488.3 175.3C515.5 219.2 543.9 281.7 543.9 351.9C543.9 475.6 443.6 575.9 319.9 575.9C196.2 575.9 96 475.7 96 352C96 260.9 137.1 182 176.5 127C196.4 99.3 216.2 77.1 231.1 61.9C239.3 53.5 247.6 45.2 256.6 37.7zM321.7 480C347 480 369.4 473 390.5 459C432.6 429.6 443.9 370.8 418.6 324.6C414.1 315.6 402.6 315 396.1 322.6L370.9 351.9C364.3 359.5 352.4 359.3 346.2 351.4C328.9 329.3 297.1 289 280.9 268.4C275.5 261.5 265.7 260.4 259.4 266.5C241.1 284.3 207.9 323.3 207.9 370.8C207.9 439.4 258.5 480 321.6 480z"
+              />
+            </svg>
+            <div class="the-text">
+              <h2>Fire</h2>
+              <p>
+                Provide real time alert, location of fire, safety actions to
+                conduct, and possible evacuation area after the fire has been
+                reported.
+              </p>
+            </div>
+          </div>
+          <div id="violence" class="prio-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M560 120C560 106.7 549.3 96 536 96C522.7 96 512 106.7 512 120L512 128L64 128C46.3 128 32 142.3 32 160L32 272C32 289.7 46.3 304 64 304L74 304C94.8 304 110.1 323.6 105 343.8L65 504.2C62.6 513.8 64.8 523.9 70.8 531.7C76.8 539.5 86.1 544 96 544L192 544C206.7 544 219.5 534 223 519.8L249 416L353.4 416C377.1 416 398.2 401.1 406.1 378.8L432.8 304L463.9 304C472.4 304 480.5 300.6 486.5 294.6L509.1 272L575.8 272C593.5 272 607.8 257.7 607.8 240L607.8 160C607.8 142.3 593.5 128 575.8 128L559.8 128L559.8 120zM353.4 368L260.9 368L276.9 304L381.9 304L360.9 362.7C359.8 365.9 356.7 368 353.4 368zM112 192L496 192C504.8 192 512 199.2 512 208C512 216.8 504.8 224 496 224L112 224C103.2 224 96 216.8 96 208C96 199.2 103.2 192 112 192z"
+              />
+            </svg>
+            <div class="the-text">
+              <h2>Violence</h2>
+              <p>
+                Provide real time alert, location where the violent incident is
+                taking place, safety actions to conduct, and possible evacuation
+                area after the violent incident has been reported.
+              </p>
+            </div>
+          </div>
+          <div id="medical" class="prio-div">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+              <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path
+                d="M338.7 144L430 144C419.3 119.4 400.5 99.1 377.1 86.4L338.7 144zM337.8 73.3C332 72.4 326 72 320 72C270.8 72 228.5 101.6 210 144L290.6 144L337.7 73.3zM320 312C386.3 312 440 258.3 440 192L200 192C200 258.3 253.7 312 320 312zM194.7 405.8C145.3 434.2 112 487.5 112 548.6C112 563.7 124.3 576 139.4 576L290.4 576L194.6 405.8zM239.8 388.1L282.5 464L368 464C412.2 464 448 499.8 448 544C448 555.4 445.6 566.2 441.3 576L500.5 576C515.6 576 527.9 563.7 527.9 548.6C527.9 457.7 454.2 384 363.3 384L276.4 384C263.8 384 251.5 385.4 239.7 388.1zM309.5 512L345.5 576L368 576C385.7 576 400 561.7 400 544C400 526.3 385.7 512 368 512L309.5 512z"
+              />
+            </svg>
+            <div id="injuries" class="the-text">
+              <h2>Injuries</h2>
+              <p>
+                Provide real time alert to the school clinic so they can quickly
+                respond to the reported medical emergency.
+              </p>
+            </div>
+          </div>
+          <div id="big-sticker" class="prio-div"></div>
+        </div>
+      </section>
+      <section class="our-campus">
+        <img src="images/eagle2.png" alt="" />
+        <div class="img-div"></div>
+        <div class="text-div">
+          <p id="our-campus">Our Campus</p>
+          <h2>
+            SafePLMUN's goal is a safer campus where every student knows where
+            to turn when it matters most.
+          </h2>
+          <p id="sub-text">
+            Step onto campus knowing help is never far away. SafePLMUN puts
+            safety information, emergency resources, and support within reach
+            helping you report incidents, request medical assistance, and look
+            out for those who matter.
+          </p>
+        </div>
+      </section>
+      <section class="amusement">
+        <div class="swiper amusement-div">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./images/isa.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/dalawa.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/tatlo.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/apat.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/lima.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/anim.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/pito.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/walo.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="our-features">
+        <p class="features">Our Features</p>
+        <h2 class="features">
+          SafePLMUN offers useful and interactive features to ensure safety and
+          connectivity when it matters most.
+        </h2>
+        <div id="carousel2" class="swiper swiper2">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./images/five.jpg" alt="" />
+              <div class="feature-text">
+                <h3>Real Time Report Based Alert System</h3>
+                <p>
+                  SafePLMUN allows users to report earthquakes, fires, and
+                  school violence. The system alerts all users about the
+                  incident, providing safety actions and possible evacuation
+                  areas.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/six.jpg" alt="" />
+              <div class="feature-text">
+                <h3>Medical Emergency Reporting System</h3>
+                <p>
+                  SafePLMUN allows users to remotely report medical emergencies
+                  to the campus clinic. The clinic has a dedicated SafePLMUN
+                  account to receive requests and respond quickly when help is
+                  needed.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/fourteen.jpg" alt="" />
+              <div class="feature-text">
+                <h3>User Emergency Status Check System</h3>
+                <p>
+                  After SafePLMUN alerts users about a reported incident the
+                  users can mark themselves safe, or in need of help to
+                  communicate their status during an emergency.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/ten.jpg" alt="" />
+              <div class="feature-text">
+                <h3>Interactive Buddy System</h3>
+                <p>
+                  SafePLMUN allows users to add another user as their buddy,
+                  when two users are buddy when there is a reported emergency
+                  they can see each other's current status. Allowing them to be
+                  more connected when it matters most.
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <img src="./images/nine.jpg" alt="" />
+              <div class="feature-text">
+                <h3>False Alarm Reporting</h3>
+                <p>
+                  SafePLMUN allows the admin to send out false alarm alert when
+                  a reported incident was proved to be false alarm. To ensure
+                  the integrity of SafePLMUN's real time emergency report and
+                  alert system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="pic-section">
+        <h1>Join Our Movement Towards a Safer, and More Connected PLMUN</h1>
+        <button class="join">JOIN NOW</button>
+      </section>
+    </main>
+    <div class="user-ui">
+      <header id="user-header" class="header">
+        <div class="wrapper" id="go-back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+              d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+            />
+          </svg>
+        </div>
+        <div class="wrapper" id="menu-mobile-user">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+              d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+            />
+          </svg>
+        </div>
+        <svg
+          id="menu-user"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 -960 960 960"
+        >
+          <path
+            d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+          />
+        </svg>
+        <input
+          placeholder="Search SafePLMUN"
+          type="text"
+          class="inputs"
+          id="search"
+          inputmode="search"
+          enterkeyhint="search"
+          placeholder="Search reports..."
+        />
+        <div class="wrapper" id="search-mobile">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+              d="M440-560q33 0 56.5-23.5T520-640q0-33-23.5-56.5T440-720q-33 0-56.5 23.5T360-640q0 33 23.5 56.5T440-560Zm0 160q45 0 84.5-19t68.5-54q-35-23-73.5-35T440-520q-41 0-79.5 12T287-473q29 35 68.5 54t84.5 19Zm384 280L636-308q-41 32-90.5 50T440-240q-134 0-227-93t-93-227q0-134 93-227t227-93q134 0 227 93t93 227q0 56-18 105.5T692-364l188 188-56 56ZM440-320q100 0 170-70t70-170q0-100-70-170t-170-70q-100 0-170 70t-70 170q0 100 70 170t170 70Zm0-240Z"
+            />
+          </svg>
+        </div>
+
+        <h1 class="text"><span class="inner">Safe</span>PLMUN</h1>
+        <div id="alert-mobile" class="wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+              d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480q0-114 59.5-210.5T301-838q1 19 4 38.5t10 45.5q-72 44-113.5 116.5T160-480q0 134 93 227t227 93q134 0 227-93t93-227q0-85-41.5-158T644-755q7-26 10-45.5t5-37.5q102 51 161.5 147T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80q-83 0-156-31.5ZM310-310q-70-70-70-170 0-58 25.5-109t72.5-85q5 15 11 34.5t16 48.5q-22 23-33.5 51T320-480q0 66 47 113t113 47q66 0 113-47t47-113q0-32-11.5-60T595-591q8-24 14.5-44.5T621-674q47 34 73 85t26 109q0 100-70 170t-170 70q-100 0-170-70Zm130-310q-37-112-48.5-157.5T380-860q0-42 29-71t71-29q42 0 71 29t29 71q0 37-11.5 82.5T520-620h-80Zm-16.5 196.5Q400-447 400-480t23.5-56.5Q447-560 480-560t56.5 23.5Q560-513 560-480t-23.5 56.5Q513-400 480-400t-56.5-23.5Z"
+            />
+          </svg>
+        </div>
+        <svg
+          id="alert"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 -960 960 960"
+        >
+          <path
+            d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480q0-114 59.5-210.5T301-838q1 19 4 38.5t10 45.5q-72 44-113.5 116.5T160-480q0 134 93 227t227 93q134 0 227-93t93-227q0-85-41.5-158T644-755q7-26 10-45.5t5-37.5q102 51 161.5 147T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80q-83 0-156-31.5ZM310-310q-70-70-70-170 0-58 25.5-109t72.5-85q5 15 11 34.5t16 48.5q-22 23-33.5 51T320-480q0 66 47 113t113 47q66 0 113-47t47-113q0-32-11.5-60T595-591q8-24 14.5-44.5T621-674q47 34 73 85t26 109q0 100-70 170t-170 70q-100 0-170-70Zm130-310q-37-112-48.5-157.5T380-860q0-42 29-71t71-29q42 0 71 29t29 71q0 37-11.5 82.5T520-620h-80Zm-16.5 196.5Q400-447 400-480t23.5-56.5Q447-560 480-560t56.5 23.5Q560-513 560-480t-23.5 56.5Q513-400 480-400t-56.5-23.5Z"
+          />
+        </svg>
+      </header>
+      <div class="user-ui-main">
+        <div class="sidebar">
+          <div class="profile-div">
+            <img id="pic-profile" src="" alt="" />
+            <h2 id="name-h2"></h2>
+          </div>
+          <hr />
+          <div class="sidebar-container">
+            <div id="request-medic-btn" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M320-120v-200H120v-320h200v-200h320v200h200v320H640v200H320Zm80-80h160v-200h200v-160H560v-200H400v200H200v160h200v200Zm80-280Z"
+                />
+              </svg>
+              <h3>Request Medic</h3>
+            </div>
+            <div id="my-medic-requests" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M160-80q-33 0-56.5-23.5T80-160v-480q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v480q0 33-23.5 56.5T800-80H160Zm0-80h640v-480H160v480Zm240-560h160v-80H400v80ZM160-160v-480 480Zm280-200v120h80v-120h120v-80H520v-120h-80v120H320v80h120Z"
+                />
+              </svg>
+              <h3>Medic Requests</h3>
+            </div>
+            <div id="clinic-side-view-medic-requests" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M160-80q-33 0-56.5-23.5T80-160v-480q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v480q0 33-23.5 56.5T800-80H160Zm0-80h640v-480H160v480Zm240-560h160v-80H400v80ZM160-160v-480 480Zm280-200v120h80v-120h120v-80H520v-120h-80v120H320v80h120Z"
+                />
+              </svg>
+              <h3>View Medic Requests</h3>
+            </div>
+            <div id="clinic-dashboard" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M280-80v-200H80v-400h200v-200h400v200h200v400H680v200H280ZM160-520h200q10 0 19 5t14 13l35 52 54-162q4-12 14.5-20t23.5-8q10 0 19 5t14 13l68 102h179v-80H600v-200H360v200H160v80Zm200 360h240v-200h200v-80H600q-10 0-19-5t-15-13l-34-52-54 162q-4 12-15 20t-24 8q-10 0-19-5t-14-13l-68-102H160v80h200v200Zm120-320Z"
+                />
+              </svg>
+              <h3>Clinic Dashboard</h3>
+            </div>
+            <div id="check-on-buddies" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M160-160v-280 280Zm640 0v-280 280Zm-40-480q17 0 28.5-11.5T800-680q0-17-11.5-28.5T760-720q-17 0-28.5 11.5T720-680q0 17 11.5 28.5T760-640Zm0 80q-51 0-85.5-34.5T640-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T760-560ZM480-680q25 0 42.5-17t17.5-43q0-25-17.5-42.5T480-800q-26 0-43 17.5T420-740q0 26 17 43t43 17Zm0 80q-59 0-99.5-40.5T340-740q0-58 40.5-99t99.5-41q58 0 99 41t41 99q0 59-41 99.5T480-600ZM320-425q0 30 32 70t128 127q94-85 127-125t33-72q0-23-15-39t-37-16q-14 0-26.5 6T541-457l-48 57h-27l-48-57q-8-11-20.5-17t-25.5-6q-23 0-37.5 16T320-425Zm-80 0q0-53 36-94t96-41q31 0 59.5 14t48.5 38q20-24 48-38t60-14q60 0 96 41.5t36 93.5q0 53-38.5 104.5T524-160l-44 40-44-40Q315-270 277.5-321T240-425Zm-40-215q17 0 28.5-11.5T240-680q0-17-11.5-28.5T200-720q-17 0-28.5 11.5T160-680q0 17 11.5 28.5T200-640ZM483-80v-80h317v-280H682v-80h118q33 0 56.5 23.5T880-440v360H483Zm-323-80h323v80H80v-360q0-33 23-56.5t57-23.5h118v80H160v280Zm40-400q-51 0-85.5-34.5T80-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T200-560Zm280-180Zm-280 60Zm560 0Z"
+                />
+              </svg>
+              <h3>Check on Buddies</h3>
+            </div>
+
+            <div id="admin-status-check-btn" class="sidebar-inner">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                
+                viewBox="0 -960 960 960"
+                
+              >
+                <path
+                  d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Zm40-70.5 48-110q-42-15-72.5-46.5T292-412l-110 46q23 64 71 112t111 72Zm-72-366q17-42 47.5-73.5T412-668l-46-110q-64 24-112 72t-72 112l110 46Zm273 153q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm31 213q63-24 110.5-71.5T778-364l-110-48q-15 42-46 72.5T550-292l46 110Zm72-368 110-46q-24-63-71.5-110.5T596-778l-46 112q41 15 71 45.5t47 70.5Z"
+                />
+              </svg>
+              <h3>Status Check</h3>
+            </div>
+
+            <div id="resources-btn" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M621.5-338.5Q680-397 680-480t-58.5-141.5Q563-680 480-680t-141.5 58.5Q280-563 280-480t58.5 141.5Q397-280 480-280t141.5-58.5ZM546-386l-86-86v-128h40v112l74 74-28 28ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
+                />
+              </svg>
+              <h3>Resources</h3>
+            </div>
+            <div id="newsfeed" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"
+                />
+              </svg>
+              <h3>News</h3>
+            </div>
+
+            <div id="admin-dashboard-btn" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M440-520v-280h440v280H440ZM80-160v-280h400v280H80Zm0-360v-280h280v280H80Zm440-80h280v-120H520v120ZM160-240h240v-120H160v120Zm0-360h120v-120H160v120Zm360 0ZM400-360ZM280-600ZM680-80l-12-60q-12-5-22.5-10.5T624-164l-58 18-40-68 46-40q-2-13-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T668-420l12-60h80l12 60q12 5 22.5 10.5T816-396l58-18 40 68-46 40q2 13 2 26t-2 26l46 40-40 68-58-18q-11 8-21.5 13.5T772-140l-12 60h-80Zm96.5-143.5Q800-247 800-280t-23.5-56.5Q753-360 720-360t-56.5 23.5Q640-313 640-280t23.5 56.5Q687-200 720-200t56.5-23.5Z"
+                />
+              </svg>
+              <h3>Admin Dashboard</h3>
+            </div>
+            <div id="users-view-admin" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm296.5-343.5Q440-607 440-640t-23.5-56.5Q393-720 360-720t-56.5 23.5Q280-673 280-640t23.5 56.5Q327-560 360-560t56.5-23.5ZM360-240Zm0-400Z"
+                />
+              </svg>
+              <h3>Users</h3>
+            </div>
+
+            <hr class="second" />
+            <div class="events">
+              <h3>What you can report?</h3>
+              <div id="earthquake-event" class="event">
+                <h4>Earthquake</h4>
+              </div>
+              <div id="fire-event" class="event">
+                <h4>School Fire</h4>
+              </div>
+              <div id="violence-event" class="event">
+                <h4>School Violence</h4>
+              </div>
+              <div id="medical-event" class="event">
+                <h4>Medical Asistance</h4>
+              </div>
+            </div>
+            <hr class="second" />
+          </div>
+        </div>
+        <div class="news-feed"></div>
+        <div class="buddies-sidebar">
+          <div class="guide-div">
+            <h2>Your Buddies</h2>
+          </div>
+          <hr />
+          <div class="buddies-container"></div>
+        </div>
+      </div>
+    </div>
+    <div id="user-nav" class="nav">
+      <svg
+        id="close-nav-user"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+        />
+      </svg>
+      <p class="nav-hide" id="admin-dashboard-nav-btn">Admin Dashboad</p>
+      <p class="nav-hide" id="request-nav-btn">Request Medic</p>
+      <p class="nav-hide" id="medic-requests-nav-btn">Medic Requests</p>
+      <p class="nav-hide" id="view-medic-requests-nav-btn">
+        View Medic Requests
+      </p>
+      <p class="nav-hide" id="clinic-dashboard-nav-btn">Clinic Dashboard</p>
+      <p class="nav-hide" id="status-nav-btn">Status Check</p>
+      <p class="nav-hide" id="buddies-nav-btn">Check On Buddies</p>
+      <p class="nav-hide" id="resources-nav-btn">Resources</p>
+      <p class="nav-hide" id="news-nav-btn">Newsfeed</p>
+      <p class="nav-hide" id="see-all-users-nav-btn">Users</p>
+      <p class="nav-hide" id="profile-nav-btn">Profile</p>
+      <p id="notifications-nav-btn">Notifications</p>
+
+      <p id="logout-nav-btn">Logout</p>
+    </div>
+    <footer class="footer">
+      <div class="div-footer">
+        <h1>SafePLMUN</h1>
+      </div>
+
+      <div class="footer-details">
+        <div class="inner-footer">
+          <h3>Contacts</h3>
+          <p>Email</p>
+          <p>facebook</p>
+          <p>instagram</p>
+        </div>
+        <div class="inner-footer">
+          <h3>Developers</h3>
+          <p>Github</p>
+          <p>Email</p>
+          <p>LinkedIn</p>
+        </div>
+        <div class="inner-footer">
+          <h3>Legal & Privacy</h3>
+          <p id="terms">Terms & Conditions</p>
+          <p id="privacy">Privacy Policy</p>
+          <p>FAQ</p>
+        </div>
+        <div class="inner-footer">
+          <h3>Resources</h3>
+          <p>Emergency Contacts</p>
+          <p>Evacuation Areas</p>
+          <p>Safety Guidelines</p>
+        </div>
+      </div>
+      <hr />
+      <p id="dev">
+        SafePLMUN is committed to promoting a safe, inclusive, and supportive
+        campus community. We strive to ensure that every student has equal
+        access to safety information, emergency resources, reporting tools, and
+        assistance regardless of background, identity, ability, or
+        circumstances. SafePLMUN aims to support every member of the PLMUN
+        community and help ensure that no one is left without access to help
+        when it matters most.
+      </p>
+      <p id="dev3">Established Since 2026</p>
+      <div class="footer-trees">
+        <svg
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Back forest -->
+          <path
+            fill="#073519"
+            d="
+        M0 320
+        V250
+        L35 190 L55 250
+        L80 125 L105 250
+        L135 175 L160 250
+        L190 105 L220 250
+        L250 155 L280 250
+        L315 80 L350 250
+        L380 140 L415 250
+        L450 95 L485 250
+        L520 160 L555 250
+        L590 70 L625 250
+        L660 135 L695 250
+        L730 85 L765 250
+        L800 150 L835 250
+        L870 65 L905 250
+        L940 130 L975 250
+        L1010 90 L1045 250
+        L1080 150 L1115 250
+        L1150 75 L1185 250
+        L1220 140 L1255 250
+        L1290 95 L1325 250
+        L1360 155 L1395 250
+        L1420 115 L1440 180
+        V320 Z
+        "
+          />
+
+          <!-- Front forest -->
+          <path
+            fill="#0b4a24"
+            d="
+        M0 320
+        V275
+        L30 220 L50 275
+        L75 155 L100 275
+        L130 205 L155 275
+        L185 135 L215 275
+        L245 190 L275 275
+        L305 115 L340 275
+        L370 180 L400 275
+        L430 125 L465 275
+        L495 200 L525 275
+        L555 105 L590 275
+        L620 175 L650 275
+        L680 120 L715 275
+        L745 195 L775 275
+        L805 100 L840 275
+        L870 175 L900 275
+        L930 115 L965 275
+        L995 190 L1025 275
+        L1055 105 L1090 275
+        L1120 165 L1150 275
+        L1180 120 L1215 275
+        L1245 195 L1275 275
+        L1305 110 L1340 275
+        L1370 175 L1400 275
+        L1420 140 L1440 210
+        V320 Z
+        "
+          />
+        </svg>
+      </div>
+    </footer>
+    <div id="login-box" class="input-box">
+      <h2>SafePLMUN Login</h2>
+      <label for="email-input">Email:</label>
+      <span id="email-error" class="error"></span>
+      <input
+        placeholder="example@gmail.com"
+        id="email-input"
+        class="inputs"
+        type="email"
+      />
+      <label for="password-input">Password:</label>
+      <span id="pass-error" class="error"></span>
+      <input
+        placeholder="Enter password"
+        id="password-input"
+        class="inputs"
+        type="password"
+      />
+      <button id="login-confirm">Login</button>
+      <button id="cancel-login">Cancel</button>
+      <p>Don't have an account? <span class="special">Sign Up here</span></p>
+    </div>
+    <div id="signup-box" class="input-box">
+      <h2>SafePLMUN Sign Up</h2>
+      <label for="">Two Step Google Signup:</label>
+      <button id="signup-confirm">Google Sign Up</button>
+      <button id="cancel-signup">Cancel</button>
+    </div>
+    <div id="confirm-signup-box" class="input-box">
+      <h2>Confirming Account</h2>
+      <label for="">Set Account Password:</label>
+      <span id="pass-error-signup" class="error"></span>
+      <input
+        placeholder="Enter password..."
+        id="signup-password"
+        type="password"
+        class="inputs"
+      />
+      <button id="signup-confirm-final">Sign Up</button>
+      <button id="cancel-signup-final">Cancel</button>
+    </div>
+    <div id="report-incident-box" class="input-box">
+      <h2>Report a Campus Incident</h2>
+      <p id="p">
+        <span>Note:</span> Submitting this report will alert all users. Please
+        provide accurate information and consider the safety and well-being of
+        the entire campus community before submitting.
+      </p>
+      <label for="">Emergency Type:</label>
+      <span id="type-error" class="error"></span>
+      <ul id="emergency-types" class="list"></ul>
+      <input
+        placeholder="Select Emergency Type"
+        id="type"
+        type="text"
+        class="inputs"
+      />
+      <label for="">Campus Location:</label>
+      <ul id="locations-list" class="list"></ul>
+      <span id="location-error" class="error"></span>
+      <input
+        placeholder="Select Campus Location"
+        id="location"
+        type="text"
+        class="inputs"
+      />
+      <button id="report-confirm-final">Report</button>
+      <button id="cancel-report-final">Cancel</button>
+    </div>
+
+    <div id="help-input-box" class="input-box">
+      <h2>Help Responders Reach You Faster</h2>
+      <label for="">Your Current Location:</label>
+      <ul id="locations-list2" class="list"></ul>
+      <span id="location-error2" class="error"></span>
+      <input
+        placeholder="Select Campus Location"
+        id="location2"
+        type="text"
+        class="inputs"
+      />
+      <label for="">Extra Details:</label>
+      <span id="extra-error" class="error"></span>
+      <input
+        placeholder="Provide Extra Details"
+        id="extra"
+        type="text"
+        class="inputs"
+      />
+      <button id="help-confirm-final">Confirm</button>
+      <button id="cancel-report-help">Cancel</button>
+    </div>
+    <div id="account-finish-input-box" class="input-box">
+      <h2>Finish Setting Up Your Account</h2>
+      <label for="">Occupation:</label>
+      <span class="error" id="occupation-error"></span>
+      <input
+        placeholder="Choose your occupation"
+        type="text"
+        class="inputs"
+        id="occupation-input"
+      />
+      <ul id="occupation-list" class="list"></ul>
+      <label for="">Program:</label>
+      <span class="error" id="program-error"></span>
+      <input
+        placeholder="Choose your program"
+        type="text"
+        class="inputs"
+        id="program-input"
+      />
+      <ul id="programs-list" class="list"></ul>
+      <label for="">Bio</label>
+      <span class="error" id="bio-error"></span>
+      <input
+        placeholder="Enter account bio"
+        type="text"
+        class="inputs"
+        id="bio-input"
+      />
+      <button id="finish-account">Proceed</button>
+    </div>
+
+    <div id="report-medic-box" class="input-box">
+      <h2>Request Medical Assistance</h2>
+      <p id="pp">
+        <span>Note:</span> Submitting this report will alert the campus clinic.
+        Please provide accurate information and make sure that what you are
+        reporting is indeed an emrgency matter.
+      </p>
+      <label for="location-medic">Campus Location:</label>
+      <ul id="locations-list-medic" class="list"></ul>
+      <span id="location-error-medic" class="error"></span>
+      <input
+        placeholder="Select Campus Location"
+        id="location-medic"
+        type="text"
+        class="inputs"
+      />
+      <label for="">Provide Extra Details:</label>
+      <span id="details-error-medic" class="error"></span>
+      <input
+        placeholder="Extra details"
+        id="details-medic"
+        type="text"
+        class="inputs"
+      />
+      <button id="report-confirm-final-medic">Request</button>
+      <button id="cancel-report-final-medic">Cancel</button>
+    </div>
+
+    <section class="terms">
+      <h1>Terms & Conditions</h1>
+
+      <p>
+        Welcome to SafePLMUN. By accessing or using SafePLMUN, you agree to
+        follow these Terms & Conditions. If you do not agree with these terms,
+        please do not use the platform.
+      </p>
+
+      <h3>1. Purpose of SafePLMUN</h3>
+
+      <p>
+        SafePLMUN is a campus safety platform designed to help students and
+        members of the PLMun community access safety information, report
+        emergencies or incidents, and communicate their status during emergency
+        situations.
+      </p>
+
+      <p>
+        SafePLMUN is intended to support campus safety and communication. It
+        does not replace official emergency services, school authorities,
+        medical professionals, or other appropriate emergency responders.
+      </p>
+
+      <h3>2. User Accounts</h3>
+
+      <p>
+        Some SafePLMUN features require an account. Users are responsible for
+        providing accurate information and maintaining the security of their
+        account.
+      </p>
+
+      <p>
+        SafePLMUN may allow users to sign in using Google. By using Google
+        Sign-In, you authorize the necessary information from your Google
+        account to be provided to SafePLMUN for authentication and account
+        management.
+      </p>
+
+      <p>
+        You must not use another person's account or attempt to access an
+        account that does not belong to you.
+      </p>
+
+      <h3>3. Incident Reports</h3>
+
+      <p>
+        Users may submit reports concerning emergencies, hazards, or other
+        campus safety concerns.
+      </p>
+
+      <p>
+        Reports should contain truthful and relevant information and should only
+        be submitted for legitimate safety purposes. Users should not
+        intentionally submit misleading, fabricated, abusive, threatening, or
+        inappropriate reports.
+      </p>
+
+      <p>
+        False or intentionally misleading reports may be subject to appropriate
+        action by SafePLMUN administrators or relevant school authorities.
+      </p>
+
+      <h3>4. Emergency Information</h3>
+
+      <p>
+        Information displayed through SafePLMUN may be based on reports
+        submitted by users and information provided by authorized personnel.
+      </p>
+
+      <p>
+        Users should follow official instructions from PLMun authorities and
+        emergency responders when available.
+      </p>
+
+      <p>
+        For immediate life-threatening emergencies, users should contact the
+        appropriate emergency services rather than relying solely on SafePLMUN.
+      </p>
+
+      <h3>5. Acceptable Use</h3>
+
+      <p>
+        You agree not to use SafePLMUN to submit knowingly false emergency
+        reports, disrupt or damage the platform, gain unauthorized access to
+        accounts or systems, upload malicious content, harass or abuse others,
+        or expose another person's private information.
+      </p>
+
+      <h3>6. Platform Availability</h3>
+
+      <p>
+        SafePLMUN is provided as a campus safety project and may experience
+        interruptions, maintenance, technical problems, or unavailable features.
+      </p>
+
+      <p>
+        While reasonable efforts may be made to keep the platform available,
+        continuous or uninterrupted service cannot be guaranteed.
+      </p>
+
+      <h3>7. User-Generated Information</h3>
+
+      <p>
+        Users are responsible for the information they submit through SafePLMUN.
+      </p>
+
+      <p>
+        By submitting information, you understand that it may be processed and
+        displayed to other authorized users when necessary for the platform's
+        safety and communication functions.
+      </p>
+
+      <h3>8. Changes to SafePLMUN</h3>
+
+      <p>
+        Features, functionality, and these Terms & Conditions may be updated as
+        SafePLMUN develops. Updated terms will be posted on this page with a
+        revised "Last Updated" date.
+      </p>
+
+      <h3>9. Contact</h3>
+
+      <p>
+        If you have questions, concerns, or requests regarding these Terms &
+        Conditions, please contact the SafePLMUN development or administration
+        team through the contact information provided on the platform.
+      </p>
+
+      <p>
+        By using SafePLMUN, you acknowledge that you have read and agree to
+        these Terms & Conditions.
+      </p>
+    </section>
+    <section class="privacy">
+      <h1>Privacy Policy</h1>
+
+      <p>
+        SafePLMUN values the privacy of its users. This Privacy Policy explains
+        what information may be collected, how it is used, and how it is handled
+        when you use the SafePLMUN platform.
+      </p>
+
+      <h3>1. Information We Collect</h3>
+
+      <p>
+        Depending on the features you use, SafePLMUN may collect or process
+        information such as your name, email address, account identifier,
+        emergency reports, status updates, and other information you voluntarily
+        submit through the platform.
+      </p>
+
+      <h3>2. Information from Google Sign-In</h3>
+
+      <p>
+        When you sign in using Google OAuth, SafePLMUN may receive information
+        associated with your Google account, such as your name, email address,
+        Google account identifier, and profile picture if requested by the
+        application.
+      </p>
+
+      <p>
+        This information is used to authenticate users and create or manage
+        their SafePLMUN account.
+      </p>
+
+      <p>
+        SafePLMUN does not receive or store your Google account password through
+        Google Sign-In.
+      </p>
+
+      <h3>3. How We Use Information</h3>
+
+      <p>
+        Information collected through SafePLMUN may be used to authenticate and
+        manage user accounts, provide access to platform features, process
+        emergency or safety reports, communicate safety information to
+        registered users, and help administrators manage campus safety
+        incidents.
+      </p>
+
+      <h3>4. Incident Reports</h3>
+
+      <p>
+        Information submitted through incident reports may be processed and
+        displayed to authorized users when necessary for emergency communication
+        and campus safety purposes.
+      </p>
+
+      <p>
+        Users should avoid including unnecessary personal or sensitive
+        information about themselves or other people in reports.
+      </p>
+
+      <h3>5. Sharing of Information</h3>
+
+      <p>
+        SafePLMUN does not sell your personal information. Information may be
+        accessible to authorized SafePLMUN administrators or displayed to
+        registered users when necessary for the platform's emergency
+        communication and safety functions.
+      </p>
+
+      <p>
+        Information may also be disclosed when required by applicable law or
+        when reasonably necessary to protect the safety, security, rights, or
+        property of users and the platform.
+      </p>
+
+      <h3>6. Data Security</h3>
+
+      <p>
+        Reasonable technical and organizational measures may be used to protect
+        information handled by SafePLMUN.
+      </p>
+
+      <p>
+        However, no online system can guarantee absolute security. Users should
+        avoid sharing passwords or unnecessary sensitive information through the
+        platform.
+      </p>
+
+      <h3>7. Data Retention</h3>
+
+      <p>
+        Account and platform information may be retained for as long as
+        reasonably necessary to provide SafePLMUN's services, maintain safety
+        records, meet operational requirements, or comply with applicable
+        obligations.
+      </p>
+
+      <h3>8. Your Privacy Rights</h3>
+
+      <p>
+        Depending on applicable law, users may have rights concerning their
+        personal information, including the right to request access to,
+        correction of, or deletion of certain information.
+      </p>
+
+      <p>
+        For questions or requests concerning personal information, users may
+        contact the SafePLMUN development or administration team through the
+        contact information provided on the platform.
+      </p>
+
+      <h3>9. Third-Party Services</h3>
+
+      <p>
+        SafePLMUN may use third-party services to provide certain functionality,
+        such as authentication, hosting, or other platform services.
+      </p>
+
+      <p></p>
+    </section>
+    <div id="signup-error-box" class="error-box">
+      <h2>We couldn't create your account at the moment!</h2>
+      <p>
+        Something went wrong while creating you account we are very sorry, we
+        are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-signup">Okay</button>
+    </div>
+    <div id="cancel-signup-error-box" class="error-box">
+      <h2>We couldn't cancel creation of your account at the moment!</h2>
+      <p>
+        Something went wrong while cancelling signup we are very sorry, we are
+        working hard to fix this issue thank you!
+      </p>
+      <button class="okay-signup-cancel">Okay</button>
+    </div>
+    <div id="logout-error-box" class="error-box">
+      <h2>We couldn't logout your account at the moment!</h2>
+      <p>
+        Something went wrong while logging out your account we are very sorry,
+        we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-logout">Okay</button>
+    </div>
+    <div id="login-error-box" class="error-box">
+      <h2>We couldn't login you to your account at the moment!</h2>
+      <p>
+        Something went wrong while logging in to your account we are very sorry,
+        we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-login">Okay</button>
+    </div>
+    <div id="report-error-box" class="error-box">
+      <h2>We couldn't report this incident at the moment!</h2>
+      <p>
+        Something went wrong while reporting this incident please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-report">Okay</button>
+    </div>
+    <div id="newsfeed-error-box" class="error-box">
+      <h2>We couldn't render your newsfeed at the moment!</h2>
+      <p>
+        Something went wrong while rendering your newsfeed please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-newsfeed">Okay</button>
+    </div>
+    <div id="mark-as-safe-error-box" class="error-box">
+      <h2>We couldn't mark you as safe at the moment!</h2>
+      <p>
+        Something went wrong while marking you as safe please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-mark-as-safe">Okay</button>
+    </div>
+    <div id="newsfeed-error-box2" class="error-box">
+      <h2>We couldn't render your newsfeed at the moment!</h2>
+      <p>
+        Something went wrong while rendering your newsfeed at already marks as
+        safe checking please try again, we are very sorry, we are working hard
+        to fix this issue thank you!
+      </p>
+      <button class="okay-newsfeed2">Okay</button>
+    </div>
+    <div id="help-error-box" class="error-box">
+      <h2>We couldn't mark you as someone who needs help at the moment!</h2>
+      <p>
+        Something went wrong while marking you as need help please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-help">Okay</button>
+    </div>
+    <div id="rescued-error-box" class="error-box">
+      <h2>We couldn't mark you as someone who was rescued at the moment!</h2>
+      <p>
+        Something went wrong while marking you as rescued please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-rescued">Okay</button>
+    </div>
+    <div id="profile-error-box" class="error-box">
+      <h2>We couldn't render your profile at the moment!</h2>
+      <p>
+        Something went wrong while rendering your profile please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-profile">Okay</button>
+    </div>
+    <div id="finish-error-box" class="error-box">
+      <h2>We couldn't finish setting up your account at the moment!</h2>
+      <p>
+        Something went wrong while finishing account setup please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-finish">Okay</button>
+    </div>
+    <div id="search-error-box" class="error-box">
+      <h2>We couldn't finish search this user at the moment!</h2>
+      <p>
+        Something went wrong while searching this user please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-search">Okay</button>
+    </div>
+    <div id="set-as-buddy-error-box" class="error-box">
+      <h2>We couldn't finish setting this user as your buddy at the moment!</h2>
+      <p>
+        Something went wrong while setting this user as your buddy please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-set-as-buddy">Okay</button>
+    </div>
+    <div id="check-if-a-buddy-error-box" class="error-box">
+      <h2>We couldn't check if this user is a buddy of yours at the moment!</h2>
+      <p>
+        Something went wrong while check this user as your buddy please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-check-if-a-buddy">Okay</button>
+    </div>
+    <div id="unbuddy-error-box" class="error-box">
+      <h2>We couldn't unbuddy this buddy of yours at the moment!</h2>
+      <p>
+        Something went wrong while we are unbuddying this buddy of yours please
+        try again, we are very sorry, we are working hard to fix this issue
+        thank you!
+      </p>
+      <button class="okay-unbuddy">Okay</button>
+    </div>
+    <div id="visit-user-profile-error-box" class="error-box">
+      <h2>We couldn't visit this user's profile at the moment!</h2>
+      <p>
+        Something went wrong while attempting to visit this user's profile
+        please try again, we are very sorry, we are working hard to fix this
+        issue thank you!
+      </p>
+      <button class="okay-visit-user-profile">Okay</button>
+    </div>
+    <div id="see-all-buddies-error-box" class="error-box">
+      <h2>We couldn't get all your buddies at the moment!</h2>
+      <p>
+        Something went wrong while fetching all your buddies please try again,
+        we are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-see-all-buddies">Okay</button>
+    </div>
+    <div id="see-all-buddies-status-error-box" class="error-box">
+      <h2>We couldn't check on your buddies at the moment!</h2>
+      <p>
+        Something went wrong while checking on your buddies please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-see-all-buddies-status">Okay</button>
+    </div>
+    <div id="notifications-error-box" class="error-box">
+      <h2>We couldn't get your notifications at the moment!</h2>
+      <p>
+        Something went wrong while getting your notifications please try again,
+        we are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-notifications">Okay</button>
+    </div>
+    <div id="medic-error-box" class="error-box">
+      <h2>We couldn't process this medic request at the moment!</h2>
+      <p>
+        Something went wrong while processing your medic request please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-medic">Okay</button>
+    </div>
+    <div id="medic-user-view-error-box" class="error-box">
+      <h2>We couldn't get your medic requests at the moment!</h2>
+      <p>
+        Something went wrong while getting your medic requests please try again,
+        we are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-medic-user-view">Okay</button>
+    </div>
+
+    <div id="medic-resolved-error-box" class="error-box">
+      <h2>We couldn't resolve this medic request at the moment!</h2>
+      <p>
+        Something went wrong while resolving this medic request please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-medic-resolved">Okay</button>
+    </div>
+
+    <div id="medic-dashboard-error-box" class="error-box">
+      <h2>We couldn't get your clinic side dashboard at the moment!</h2>
+      <p>
+        Something went wrong while fetching your dashboard, please try again, we
+        are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-medic-dashboard">Okay</button>
+    </div>
+
+    <div id="false-alarm-error-box" class="error-box">
+      <h2>We couldn't set this report as false alarm at the moment!</h2>
+      <p>
+        Something went wrong while setting this report as false alarm, please
+        try again, we are very sorry, we are working hard to fix this issue
+        thank you!
+      </p>
+      <button class="okay-false-alarm">Okay</button>
+    </div>
+
+    <div id="see-users-error-box" class="error-box">
+      <h2>We couldn't get users information at the moment!</h2>
+      <p>
+        Something went wrong while fetching users information, please try again,
+        we are very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-see-users">Okay</button>
+    </div>
+
+    <div id="ban-error-box" class="error-box">
+      <h2>We couldn't ban this user at the moment!</h2>
+      <p>
+        Something went wrong while banning this user, please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-ban">Okay</button>
+    </div>
+
+    <div id="ban-user-error-box" class="error-box">
+      <h2>Your Reporting Priviledges has been Suspended</h2>
+      <p>
+        You are not allowed to report an incident and request a medical
+        assistance due to your repeated false alarm actions.
+      </p>
+      <button class="okay-ban-user">Okay</button>
+    </div>
+
+    <div id="unban-error-box" class="error-box">
+      <h2>We couldn't unban this user at the moment!</h2>
+      <p>
+        Something went wrong while unbanning this user, please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-unban">Okay</button>
+    </div>
+
+    <div id="status-error-box" class="error-box">
+      <h2>We couldn't get all users status at the moment!</h2>
+      <p>
+        Something went wrong while fetchign all users status, please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-status">Okay</button>
+    </div>
+
+        <div id="admin-dashboard-error-box" class="error-box">
+      <h2>We couldn't get your admin dashboard at the moment!</h2>
+      <p>
+        Something went wrong while fetchign the admin dashboard, please try again, we are
+        very sorry, we are working hard to fix this issue thank you!
+      </p>
+      <button class="okay-admin-dashboard">Okay</button>
+    </div>
+
+   
+    <img id="overview-img" src="./images/plmun overview.jpg" alt="" />
+    <div class="safeplmun-guidelines">
+      <div class="guidelines-header">
+        <h2>SafePLMUN Guidelines</h2>
+        <p>One Campus. One Community. One Priority: Safety.</p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>1. Report Emergencies Responsibly</h3>
+        <p>
+          Use SafePLMUN to report genuine emergencies that require immediate
+          attention, such as fire, violence, earthquakes, and medical
+          emergencies.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>2. Provide Accurate Information</h3>
+        <p>
+          Provide the correct emergency type and location whenever possible.
+          Accurate information helps responders understand the situation and
+          coordinate assistance.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>3. Follow Emergency Instructions</h3>
+        <p>
+          Read emergency alerts carefully and follow instructions from
+          authorized school personnel. Move to a designated safe area or
+          evacuate when instructed.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>4. Keep Your Status Updated</h3>
+        <p>
+          During an active emergency, use the available status options to
+          indicate whether you are safe, need help, or need medical assistance.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>5. Do Not Put Yourself at Risk</h3>
+        <p>
+          Do not investigate dangerous situations or attempt a rescue if doing
+          so could put you or others in danger. Prioritize reaching a safe
+          location and follow official instructions.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>6. Do Not Abuse the System</h3>
+        <p>
+          Do not submit false reports, prank reports, spam, or misleading
+          information. Misuse of the system can interfere with genuine emergency
+          response.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>7. Respect Other Users</h3>
+        <p>
+          Respect the privacy and safety of other users. Do not use SafePLMUN to
+          harass, threaten, or spread unnecessary personal information.
+        </p>
+      </div>
+
+      <div class="guideline-section">
+        <h3>8. Stay Calm and Informed</h3>
+        <p>
+          During an emergency, avoid spreading unverified information. Rely on
+          official SafePLMUN alerts and instructions from authorized school
+          personnel.
+        </p>
+      </div>
+
+      <div class="guidelines-footer">
+        <p>
+          By continuing, you acknowledge that you have read and understood these
+          guidelines.
+        </p>
+      </div>
+    </div>
+    <div class="safeplmun-resources">
+      <div class="resources-header">
+        <h2>Emergency Resources</h2>
+        <p>Important emergency contacts for the PLMun community.</p>
+      </div>
+
+      <div class="resource-section">
+        <h3>National Emergency</h3>
+
+        <div class="resource-item">
+          <div>
+            <h4>Emergency Hotline</h4>
+            <p>
+              For immediate emergency assistance anywhere in the Philippines.
+            </p>
+          </div>
+
+          <a href="tel:911">911</a>
+        </div>
+      </div>
+
+      <div class="resource-section">
+        <h3>Muntinlupa Emergency Response</h3>
+
+        <div class="resource-item">
+          <div>
+            <h4>Emergency Hotline</h4>
+            <p>Official Muntinlupa emergency response hotline.</p>
+          </div>
+
+          <a href="tel:137175">137-175</a>
+        </div>
+
+        <div class="resource-item">
+          <div>
+            <h4>Landline</h4>
+            <p>Muntinlupa Department of Disaster Resilience and Management.</p>
+          </div>
+
+          <a href="tel:83735165">(8) 373-5165</a>
+        </div>
+
+        <div class="resource-item">
+          <div>
+            <h4>Smart</h4>
+            <p>Muntinlupa Department of Disaster Resilience and Management.</p>
+          </div>
+
+          <a href="tel:09215427123">0921-542-7123</a>
+        </div>
+
+        <div class="resource-item">
+          <div>
+            <h4>Globe</h4>
+            <p>Muntinlupa Department of Disaster Resilience and Management.</p>
+          </div>
+
+          <a href="tel:09272579322">0927-257-9322</a>
+        </div>
+      </div>
+
+      <div class="resources-footer">
+        <p>
+          For immediate life-threatening emergencies, call 911. SafePLMUN does
+          not replace official emergency services.
+        </p>
+      </div>
+    </div>
+    <div id="email-already-registered--error-box" class="error-box">
+      <h2>Email Already Been Used</h2>
+      <p>
+        Your email has already been used. Please log in to your account instead.
+      </p>
+      <button class="okay-email-already-registered">Go To Login</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  </body>
+</html>

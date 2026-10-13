@@ -1,0 +1,91 @@
+.our-campus{
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 3.5vw;
+    position: relative;
+    
+}
+.our-campus .img-div{
+    width: 100%;
+    height: 100%;
+    grid-column: 2/6;
+    grid-row: 2/6;
+    background-image:
+    url('../images/plmun.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 2px 3px 4px var(--off-white-shadow);
+    anchor-name: --uno2;
+    opacity: 0;
+}
+.our-campus .text-div{
+    width: 100%;
+    height: 100%;
+    grid-column: 6/8;
+    grid-row: 2/6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1vw;
+    opacity: 0;
+}
+.our-campus .text-div #our-campus{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.6rem, 1vw, 0.8rem);
+    color: var(--deep-forest-green);
+    text-shadow: 1px 2px 3px var(--off-white-shadow);
+    font-weight: 500;
+}
+.our-campus .text-div h2{
+    font-family: var(--font-primary);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    color: var(--deep-forest-green);
+    width: 100%;
+    font-weight: 700;
+}
+.our-campus .text-div #sub-text{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+    color: var(--black);
+    max-width: 750px;
+    font-weight: 500;
+}
+.our-campus img{
+    position: absolute;
+    position-anchor: --uno2;
+    height: 30%;
+    top: anchor(bottom);
+    left: anchor(center);
+    z-index: 3;
+    translate: -175% -65%;
+}
+.our-campus .img-div.show{
+    animation: slideIn;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+.our-campus .text-div.show{
+    animation: slideIn;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 0.7s;
+}
+
+
+
+

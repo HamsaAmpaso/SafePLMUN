@@ -1,0 +1,36 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        
+    }
+
+    to {
+        opacity: 1;
+        
+    }
+}
+@keyframes slideIn{
+    from{
+        opacity: 0;
+        transform: translateX(-100%);
+    }to{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes earthquakeGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 10px rgba(125, 172, 92, 0.6),
+            0 0 17px rgba(125, 172, 92, 0.4),
+            0 0 21px rgba(125, 172, 92, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px rgba(125, 172, 92, 0.9),
+            0 0 20px rgba(125, 172, 92, 0.6),
+            0 0 25px rgba(125, 172, 92, 0.3);
+    }
+}

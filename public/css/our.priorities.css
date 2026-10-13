@@ -1,0 +1,112 @@
+.priorities{
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--light-green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.priorities .prio-grid{
+    width: 80%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 200px 200px;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas: "inner-prio inner-prio inner-prio"
+                "earthquake fire big-sticker"
+                "violence injuries big-sticker";
+    gap: 2vw;
+
+}
+#injuries{
+    grid-area: injuries;
+}
+.inner-prio hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+
+    background: repeating-linear-gradient(
+        to right,
+        var(--orange) 0 20px,
+        transparent 20px 35px
+    );
+}
+.inner-prio h2{
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    color: var(--orange);
+    
+    font-weight: 700;
+}
+ .priorities .inner-prio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    grid-area: inner-prio;
+    width: 100%;
+    height: auto;;
+    gap: 1vw;
+}
+.priorities .prio-div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+
+}
+#earthquake{
+    grid-area: earthquake;
+}
+#fire{
+    grid-area: fire;
+}
+#big-sticker{
+    grid-area: big-sticker;
+    background-image:
+    url('../images/eaglecircle.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#violence{
+    grid-area: violence;
+}
+.the-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5vw;
+   
+}
+.the-text h2{
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 3vw, 3rem);
+    color: var(--deep-forest-green);
+    width: 100%;
+    font-weight: 700;
+}
+.the-text p{
+    font-family: var(--font-secondary);
+    font-size: clamp(0.6rem, 1vw, 0.8rem);
+    color: var(--black);
+   
+   
+}
+.priorities .prio-div svg{
+    height: 75%;
+    width: 40%;
+    min-height: 25px;
+    min-width: 25px;
+}

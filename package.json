@@ -1,0 +1,45 @@
+{
+  "name": "safeplmun",
+  "version": "1.0.0",
+  "description": "safeplmun is a disaster and emergencies user report based alert system for ou campus plmun. This is developed for the purpose of safety and more connected campus when it matters most.",
+  "keywords": [
+    "none"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "license": "MIT",
+  "author": "hamsa ampaso",
+  "type": "module",
+  "main": "server.ts",
+  "scripts": {
+    "test": "node server.ts"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parse": "^0.4.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "jsonwebtoken": "^9.0.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.23.0",
+    "socket.io": "^4.8.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.17",
+    "@types/pg": "^8.23.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

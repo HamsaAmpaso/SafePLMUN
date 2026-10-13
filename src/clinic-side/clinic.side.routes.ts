@@ -1,0 +1,13 @@
+import { Router } from "express";
+import { authenticationMiddleware } from "../auth/authentication.middleware.js";
+import { validator } from "../auth/auth.validation.js";
+import { asyncControllerHandler } from "../utilities/asyncHandler.js";
+import { authorize } from "../auth/authorization.js";
+import { getAllMedicRequestClinicSideController } from "./clinic.side.controllers.js";
+import { resolveRequestController } from "./clinic.side.controllers.js";
+import { resolveRequestSchema } from "./clinic.side.validation.js";
+import { clinicDashboardController } from "./clinic.side.controllers.js";
+export const clinicRouter = Router();
+clinicRouter.get('/requests', authenticationMiddleware, authorize("clinic-side-operator"), asyncControllerHandler(getAllMedicRequestClinicSideController));
+clinicRouter.post('/requests', authenticationMiddleware, authorize("clinic-side-operator"), validator(resolveRequestSchema), asyncControllerHandler (resolveRequestController));
+clinicRouter.get('/dashboard', authenticationMiddleware, authorize("clinic-side-operator"), asyncControllerHandler(clinicDashboardController));
