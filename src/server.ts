@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(cookieParser());
 const allowedOrigins =
   process.env.NODE_ENV === "production"
-    ? ["https://eric-s-barbershop-customer-booking-system.pages.dev"]
+    ? ["https://safeplmun.hamsaampaso1.workers.dev"]
     : [
         "http://localhost:5500",
         "http://127.0.0.1:5500",

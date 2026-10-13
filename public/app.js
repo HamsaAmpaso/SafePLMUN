@@ -1397,7 +1397,7 @@ async function renderNewsFeed(arr){
 }
 }
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://safeplmun.onrender.com", {
     withCredentials: true
 });
 const schoolShooterAlertSound = new Audio('./sounds/schoolShooter.mp3');
@@ -2235,7 +2235,7 @@ joins.forEach((j)=>{
 const signupBTN = document.querySelector("#signup-confirm");
 signupBTN.addEventListener("click", ()=>{
     window.open(
-        "http://localhost:3000/auth/signup/google",
+        "https://safeplmun.onrender.com/auth/signup/google",
         "googleSignup",
         "width=500,height=600"
     );
@@ -2262,7 +2262,7 @@ overlay4.addEventListener("click", ()=>{
 });
 window.addEventListener("message", (event) => {
 
-    if (event.origin !== "http://localhost:3000") {
+    if (event.origin !== "https://safeplmun.onrender.com") {
         return;
     }
 
