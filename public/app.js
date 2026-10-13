@@ -1426,6 +1426,7 @@ socket.on("connect_error", (error) => {
 });
 
 socket.on("false-alarm", (data)=>{
+     resolveSound.play();
     const yourStatus = localStorage.getItem("status");
     if(yourStatus !== 'logged-in')return;
     const role = localStorage.getItem("role");
@@ -1448,7 +1449,7 @@ socket.on("false-alarm", (data)=>{
     hour: "numeric",
     minute: "2-digit",
     })}`;
-    resolveSound.play();
+   
     popup.appendChild(small);
     popup.classList.add("show");
     setTimeout(()=>{
@@ -1466,8 +1467,7 @@ socket.on("false-alarm", (data)=>{
 socket.on("request-medic", (data)=>{
     const yourStatus = localStorage.getItem("status");
     if(yourStatus !== 'logged-in')return;
-    const role = localStorage.getItem("role");
-    if(role !== 'clinic-side-operator')return;
+    medicalSound.play();
     console.log(data);
     const popup = document.createElement("div");
     popup.classList.add("pop-up");
@@ -1487,7 +1487,7 @@ socket.on("request-medic", (data)=>{
     hour: "numeric",
     minute: "2-digit",
     })}`;
-    medicalSound.play();
+    
     popup.appendChild(small);
     popup.classList.add("show");
     setTimeout(()=>{
@@ -1507,6 +1507,7 @@ socket.on('medic-request-resolved', (data)=>{
     if(yourStatus !== 'logged-in')return;
     const userid = localStorage.getItem("user");
     if(userid !== data.userid)return;
+    resolveSound.play();
     console.log(data);
     const popup = document.createElement("div");
     popup.classList.add("pop-up");
@@ -1526,7 +1527,7 @@ socket.on('medic-request-resolved', (data)=>{
     hour: "numeric",
     minute: "2-digit",
     })}`;
-    resolveSound.play();
+    
     popup.appendChild(small);
     popup.classList.add("show");
     setTimeout(()=>{
