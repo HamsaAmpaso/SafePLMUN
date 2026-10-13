@@ -1505,8 +1505,7 @@ socket.on("request-medic", (data)=>{
 socket.on('medic-request-resolved', (data)=>{
     const yourStatus = localStorage.getItem("status");
     if(yourStatus !== 'logged-in')return;
-    const userid = localStorage.getItem("user");
-    if(userid !== data.userid)return;
+   
     resolveSound.play();
     console.log(data);
     const popup = document.createElement("div");
