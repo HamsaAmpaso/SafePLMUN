@@ -21,7 +21,7 @@ export async function completeAccountRegistrationService(email: string, password
         });
         const hashedRefreshToken = await bcrypt.hash(refreshToken, 12);
         const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_JWT_SECRET!, {
-        expiresIn: "1m"
+        expiresIn: "15m"
         });
         await insertRefreshToken(user.userid, hashedRefreshToken);
         return {
@@ -75,7 +75,7 @@ export async function loginService( email: string, password: string){
         }
 
         const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_JWT_SECRET!, {
-            expiresIn: "1m"
+            expiresIn: "15m"
         });
 
         const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_JWT_SECRET!, {
