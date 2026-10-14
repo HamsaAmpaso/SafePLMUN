@@ -29,6 +29,9 @@ import { banUserAPICaller } from "./admin-api-callers.js";
 import { unbanUserAPICaller } from "./admin-api-callers.js";
 import { seeAllUSersStatusAPICaller } from "./admin-api-callers.js";
 import { adminDashboardAPICaller } from "./admin-api-callers.js";
+const socket = io("https://safeplmun.onrender.com", {
+    withCredentials: true
+});
 const statusCheckBTNMObile = document.querySelector("#status-nav-btn");
 const statusCheckBTN = document.querySelector("#admin-status-check-btn");
 const falseAlarmErrorBox = document.querySelector("#false-alarm-error-box");
@@ -80,6 +83,586 @@ const closeSetBuddyErrorBox = document.querySelector(".okay-set-as-buddy");
 const checkIfBuddyErrorBox = document.querySelector("#check-if-a-buddy-error-box");
 const closeCheckIfBuddyErrorBox = document.querySelector(".okay-check-if-a-buddy");
 const checkOnBuddiesMOBILEBTN = document.querySelector('#buddies-nav-btn');
+
+const schoolShooterAlertSound = new Audio('./sounds/schoolShooter.mp3');
+function registerSocket() {
+    const userId = localStorage.getItem("user");
+
+    console.log("USER ID:", userId);
+
+    if (!userId) {
+        console.log("No userId in localStorage");
+        return;
+    }
+
+    socket.emit("register", userId);
+
+    socket.on("connect", () => {
+    console.log("SOCKET CONNECTED:", socket.id);
+    registerSocket();
+});
+socket.on("disconnect", (reason) => {
+    console.log("Socket disconnected:", reason);
+});
+
+socket.on("connect_error", (error) => {
+    console.log("Socket connection error:", error.message);
+});
+
+socket.on("false-alarm", (data)=>{
+     resolveSound.play();
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    const role = localStorage.getItem("role");
+    if(role === "admin")return;
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `False Alarm Alert`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = data.report;
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+   
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+    popup.addEventListener("click", ()=>{
+        getReports();
+        popup.classList.remove("show");
+        resolveSound.pause();
+    });
+    
+})
+
+socket.on("request-medic", (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    medicalSound.play();
+    console.log(data);
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `New Medical Assistance Request Received`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = `SafePLMUN user ${data.name.split(" ")[0]} is requesting medical assistance at ${data.location}. Details: ${data.details}. Please attend to the request immediately.`;
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+    
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+    popup.addEventListener("click", ()=>{
+        getMEdciRequestClinicSideFunction();
+        popup.classList.remove("show");
+        
+         medicalSound.pause();
+    });
+});
+
+socket.on('medic-request-resolved', (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+   
+    resolveSound.play();
+    console.log(data);
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `Medic Request Resolved`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = 'Your medical request has been resolved. Thank you for keeping PLMUN safe!';
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+    
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+     popup.addEventListener("click", ()=>{
+        userSideVieMEdicRequestsBTN();
+        popup.classList.remove("show");
+        resolveSound.pause();
+    });
+});
+
+
+socket.on("alert", (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    if(data.type === "Earthquake"){
+     const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        
+        viewBox="0 0 24 24"
+      >
+        <g>
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path
+            d="M11.327 1.612a1 1 0 0 1 1.246-.08l.1.08L23 11h-3v9a1 1 0 0 1-.883.993L19 21h-6.5l2.5-4-3.5-3 4-3L13 9l.5-3-3 3 2.5 2-5 3 3.75 3.5L8.5 21H5a1 1 0 0 1-.993-.883L4 20v-9H1l10.327-9.388z"
+          />
+        </g>
+      </svg>
+      <h1>EARTHQUAKE ALERT</h1>
+
+      <h2>Stay calm. Drop, Cover, and Hold.</h2>
+
+      <ul>
+        <li>Stay away from windows and falling objects. If outdoors, move to an open area away from buildings and power lines.
+        </li>
+        <li>After shaking stops, watch for aftershocks. Evacuate through designated routes when instructed.</li>
+        
+      </ul>
+`;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        earthquakeAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        earthquakeAlertSound.pause();
+        getReports();
+    });
+    earthquakeAlertSound.play();
+}
+if(data.type === "School Fire"){
+     const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M240-400q0 52 21 98.5t60 81.5q-1-5-1-9v-9q0-32 12-60t35-51l113-111 113 111q23 23 35 51t12 60v9q0 4-1 9 39-35 60-81.5t21-98.5q0-50-18.5-94.5T648-574q-20 13-42 19.5t-45 6.5q-62 0-107.5-41T401-690q-39 33-69 68.5t-50.5 72Q261-513 250.5-475T240-400Zm240 52-57 56q-11 11-17 25t-6 29q0 32 23.5 55t56.5 23q33 0 56.5-23t23.5-55q0-16-6-29.5T537-292l-57-56Zm0-492v132q0 34 23.5 57t57.5 23q18 0 33.5-7.5T622-658l18-22q74 42 117 117t43 163q0 134-93 227T480-80q-134 0-227-93t-93-227q0-129 86.5-245T480-840Z"/></svg>
+      <h1>FIRE ALERT</h1>
+
+      <h2>There is an ongoing fire incident at ${data.location}. Stay calm. Evacuate quickly and safely.</h2>
+
+      <ul>
+       <li>Follow the designated evacuation routes and exit the building immediately. Stay low if there is smoke and cover your nose and mouth if possible.</li>
+       <li>Do not use elevators. Use the nearest safe stairway or exit. Once outside, proceed to the designated assembly area and follow staff instructions.</li>
+     </ul>
+     `;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        fireAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        fireAlertSound.pause();
+        getReports();
+
+    });
+    fireAlertSound.play();
+}
+if(data.type === "Armed Violence"){
+   const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+     <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M200-160v-80h64l79-263q8-26 29.5-41.5T420-560h120q26 0 47.5 15.5T617-503l79 263h64v80H200Zm148-80h264l-72-240H420l-72 240Zm92-400v-200h80v200h-80Zm238 99-57-57 142-141 56 56-141 142Zm42 181v-80h200v80H720ZM282-541 141-683l56-56 142 141-57 57ZM40-360v-80h200v80H40Zm440 120Z"/></svg>
+
+    <h1>ACTIVE SHOOTER ALERT</h1>
+
+    <h2>
+    There is an active shooter at ${data.location}.
+    Stay calm and follow these safety instructions.
+    </h2>
+
+    <ul>
+   <li>If safe, escape immediately and move away from the threat. If you cannot escape, lock or barricade the door and stay hidden.</li>
+   <li>If you encounter responders, keep your hands visible and follow their instructions. Once safe, contact authorities and do not return until cleared.
+    </ul>
+    `;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        schoolShooterAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        schoolShooterAlertSound.pause();
+        getReports();
+    });
+    schoolShooterAlertSound.play();
+}
+});
+}
+socket.on("connect", () => {
+    console.log("SOCKET CONNECTED:", socket.id);
+    registerSocket();
+});
+socket.on("disconnect", (reason) => {
+    console.log("Socket disconnected:", reason);
+});
+
+socket.on("connect_error", (error) => {
+    console.log("Socket connection error:", error.message);
+});
+
+socket.on("false-alarm", (data)=>{
+     resolveSound.play();
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    const role = localStorage.getItem("role");
+    if(role === "admin")return;
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `False Alarm Alert`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = data.report;
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+   
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+    popup.addEventListener("click", ()=>{
+        getReports();
+        popup.classList.remove("show");
+        resolveSound.pause();
+    });
+    
+})
+
+socket.on("request-medic", (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    medicalSound.play();
+    console.log(data);
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `New Medical Assistance Request Received`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = `SafePLMUN user ${data.name.split(" ")[0]} is requesting medical assistance at ${data.location}. Details: ${data.details}. Please attend to the request immediately.`;
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+    
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+    popup.addEventListener("click", ()=>{
+        getMEdciRequestClinicSideFunction();
+        popup.classList.remove("show");
+        
+         medicalSound.pause();
+    });
+});
+
+socket.on('medic-request-resolved', (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+   
+    resolveSound.play();
+    console.log(data);
+    const popup = document.createElement("div");
+    popup.classList.add("pop-up");
+    document.body.appendChild(popup);
+    const h1 = document.createElement('h1');
+    h1.textContent = `Medic Request Resolved`;
+    popup.appendChild(h1);
+    const p = document.createElement("p");
+    p.textContent = 'Your medical request has been resolved. Thank you for keeping PLMUN safe!';
+    popup.appendChild(p);
+    const small = document.createElement("p");
+    small.classList.add("small");
+    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    })}`;
+    
+    popup.appendChild(small);
+    popup.classList.add("show");
+    setTimeout(()=>{
+         popup.classList.remove("show");
+         document.body.removeChild(popup);
+    }, 9000);
+     popup.addEventListener("click", ()=>{
+        userSideVieMEdicRequestsBTN();
+        popup.classList.remove("show");
+        resolveSound.pause();
+    });
+});
+
+
+socket.on("alert", (data)=>{
+    const yourStatus = localStorage.getItem("status");
+    if(yourStatus !== 'logged-in')return;
+    if(data.type === "Earthquake"){
+     const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        
+        viewBox="0 0 24 24"
+      >
+        <g>
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path
+            d="M11.327 1.612a1 1 0 0 1 1.246-.08l.1.08L23 11h-3v9a1 1 0 0 1-.883.993L19 21h-6.5l2.5-4-3.5-3 4-3L13 9l.5-3-3 3 2.5 2-5 3 3.75 3.5L8.5 21H5a1 1 0 0 1-.993-.883L4 20v-9H1l10.327-9.388z"
+          />
+        </g>
+      </svg>
+      <h1>EARTHQUAKE ALERT</h1>
+
+      <h2>Stay calm. Drop, Cover, and Hold.</h2>
+
+      <ul>
+        <li>Stay away from windows and falling objects. If outdoors, move to an open area away from buildings and power lines.
+        </li>
+        <li>After shaking stops, watch for aftershocks. Evacuate through designated routes when instructed.</li>
+        
+      </ul>
+`;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        earthquakeAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        earthquakeAlertSound.pause();
+        getReports();
+    });
+    earthquakeAlertSound.play();
+}
+if(data.type === "School Fire"){
+     const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M240-400q0 52 21 98.5t60 81.5q-1-5-1-9v-9q0-32 12-60t35-51l113-111 113 111q23 23 35 51t12 60v9q0 4-1 9 39-35 60-81.5t21-98.5q0-50-18.5-94.5T648-574q-20 13-42 19.5t-45 6.5q-62 0-107.5-41T401-690q-39 33-69 68.5t-50.5 72Q261-513 250.5-475T240-400Zm240 52-57 56q-11 11-17 25t-6 29q0 32 23.5 55t56.5 23q33 0 56.5-23t23.5-55q0-16-6-29.5T537-292l-57-56Zm0-492v132q0 34 23.5 57t57.5 23q18 0 33.5-7.5T622-658l18-22q74 42 117 117t43 163q0 134-93 227T480-80q-134 0-227-93t-93-227q0-129 86.5-245T480-840Z"/></svg>
+      <h1>FIRE ALERT</h1>
+
+      <h2>There is an ongoing fire incident at ${data.location}. Stay calm. Evacuate quickly and safely.</h2>
+
+      <ul>
+       <li>Follow the designated evacuation routes and exit the building immediately. Stay low if there is smoke and cover your nose and mouth if possible.</li>
+       <li>Do not use elevators. Use the nearest safe stairway or exit. Once outside, proceed to the designated assembly area and follow staff instructions.</li>
+     </ul>
+     `;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        fireAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        fireAlertSound.pause();
+        getReports();
+
+    });
+    fireAlertSound.play();
+}
+if(data.type === "Armed Violence"){
+   const div = document.createElement("div");
+     div.classList.add("alert-box");
+     div.innerHTML = `
+     <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M200-160v-80h64l79-263q8-26 29.5-41.5T420-560h120q26 0 47.5 15.5T617-503l79 263h64v80H200Zm148-80h264l-72-240H420l-72 240Zm92-400v-200h80v200h-80Zm238 99-57-57 142-141 56 56-141 142Zm42 181v-80h200v80H720ZM282-541 141-683l56-56 142 141-57 57ZM40-360v-80h200v80H40Zm440 120Z"/></svg>
+
+    <h1>ACTIVE SHOOTER ALERT</h1>
+
+    <h2>
+    There is an active shooter at ${data.location}.
+    Stay calm and follow these safety instructions.
+    </h2>
+
+    <ul>
+   <li>If safe, escape immediately and move away from the threat. If you cannot escape, lock or barricade the door and stay hidden.</li>
+   <li>If you encounter responders, keep your hands visible and follow their instructions. Once safe, contact authorities and do not return until cleared.
+    </ul>
+    `;
+    document.body.appendChild(div);
+    div.classList.add("show");
+    overlay2.classList.add("active");
+    const p = document.createElement("p");
+    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+    })}`;
+    div.appendChild(p);
+    const btn = document.createElement("button");
+    btn.textContent = "Proceed";
+    btn.classList.add("proceed");
+    div.appendChild(btn);
+    btn.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        schoolShooterAlertSound.pause();
+        getReports();
+    });
+    overlay2.addEventListener("click", ()=>{
+        div.classList.remove("show");
+        overlay2.classList.remove("active");
+        schoolShooterAlertSound.pause();
+        getReports();
+    });
+    schoolShooterAlertSound.play();
+}
+});
+
 async function getBuddies(){
     try{
        const buddies = await seeAllBuddiesAPICaller();
@@ -1003,54 +1586,6 @@ async function renderVisitProfile(arr, reports){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function renderNewsFeed(arr){
     const username = localStorage.getItem("name");
      newsFeedDiv.innerHTML = "";
@@ -1397,304 +1932,7 @@ async function renderNewsFeed(arr){
 }
 }
 
-const socket = io("https://safeplmun.onrender.com", {
-    withCredentials: true
-});
-const schoolShooterAlertSound = new Audio('./sounds/schoolShooter.mp3');
-function registerSocket() {
-    const userId = localStorage.getItem("user");
 
-    console.log("USER ID:", userId);
-
-    if (!userId) {
-        console.log("No userId in localStorage");
-        return;
-    }
-
-    socket.emit("register", userId);
-}
-socket.on("connect", () => {
-    console.log("SOCKET CONNECTED:", socket.id);
-    registerSocket();
-});
-socket.on("disconnect", (reason) => {
-    console.log("Socket disconnected:", reason);
-});
-
-socket.on("connect_error", (error) => {
-    console.log("Socket connection error:", error.message);
-});
-
-socket.on("false-alarm", (data)=>{
-     resolveSound.play();
-    const yourStatus = localStorage.getItem("status");
-    if(yourStatus !== 'logged-in')return;
-    const role = localStorage.getItem("role");
-    if(role === "admin")return;
-    const popup = document.createElement("div");
-    popup.classList.add("pop-up");
-    document.body.appendChild(popup);
-    const h1 = document.createElement('h1');
-    h1.textContent = `False Alarm Alert`;
-    popup.appendChild(h1);
-    const p = document.createElement("p");
-    p.textContent = data.report;
-    popup.appendChild(p);
-    const small = document.createElement("p");
-    small.classList.add("small");
-    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    })}`;
-   
-    popup.appendChild(small);
-    popup.classList.add("show");
-    setTimeout(()=>{
-         popup.classList.remove("show");
-         document.body.removeChild(popup);
-    }, 9000);
-    popup.addEventListener("click", ()=>{
-        getReports();
-        popup.classList.remove("show");
-        resolveSound.pause();
-    });
-    
-})
-
-socket.on("request-medic", (data)=>{
-    const yourStatus = localStorage.getItem("status");
-    if(yourStatus !== 'logged-in')return;
-    medicalSound.play();
-    console.log(data);
-    const popup = document.createElement("div");
-    popup.classList.add("pop-up");
-    document.body.appendChild(popup);
-    const h1 = document.createElement('h1');
-    h1.textContent = `New Medical Assistance Request Received`;
-    popup.appendChild(h1);
-    const p = document.createElement("p");
-    p.textContent = `SafePLMUN user ${data.name.split(" ")[0]} is requesting medical assistance at ${data.location}. Details: ${data.details}. Please attend to the request immediately.`;
-    popup.appendChild(p);
-    const small = document.createElement("p");
-    small.classList.add("small");
-    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    })}`;
-    
-    popup.appendChild(small);
-    popup.classList.add("show");
-    setTimeout(()=>{
-         popup.classList.remove("show");
-         document.body.removeChild(popup);
-    }, 9000);
-    popup.addEventListener("click", ()=>{
-        getMEdciRequestClinicSideFunction();
-        popup.classList.remove("show");
-        
-         medicalSound.pause();
-    });
-});
-
-socket.on('medic-request-resolved', (data)=>{
-    const yourStatus = localStorage.getItem("status");
-    if(yourStatus !== 'logged-in')return;
-   
-    resolveSound.play();
-    console.log(data);
-    const popup = document.createElement("div");
-    popup.classList.add("pop-up");
-    document.body.appendChild(popup);
-    const h1 = document.createElement('h1');
-    h1.textContent = `Medic Request Resolved`;
-    popup.appendChild(h1);
-    const p = document.createElement("p");
-    p.textContent = 'Your medical request has been resolved. Thank you for keeping PLMUN safe!';
-    popup.appendChild(p);
-    const small = document.createElement("p");
-    small.classList.add("small");
-    small.textContent = `Requested at ${new Date(data.time).toLocaleString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    })}`;
-    
-    popup.appendChild(small);
-    popup.classList.add("show");
-    setTimeout(()=>{
-         popup.classList.remove("show");
-         document.body.removeChild(popup);
-    }, 9000);
-     popup.addEventListener("click", ()=>{
-        userSideVieMEdicRequestsBTN();
-        popup.classList.remove("show");
-        resolveSound.pause();
-    });
-});
-
-
-socket.on("alert", (data)=>{
-    const yourStatus = localStorage.getItem("status");
-    if(yourStatus !== 'logged-in')return;
-    if(data.type === "Earthquake"){
-     const div = document.createElement("div");
-     div.classList.add("alert-box");
-     div.innerHTML = `
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        
-        viewBox="0 0 24 24"
-      >
-        <g>
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path
-            d="M11.327 1.612a1 1 0 0 1 1.246-.08l.1.08L23 11h-3v9a1 1 0 0 1-.883.993L19 21h-6.5l2.5-4-3.5-3 4-3L13 9l.5-3-3 3 2.5 2-5 3 3.75 3.5L8.5 21H5a1 1 0 0 1-.993-.883L4 20v-9H1l10.327-9.388z"
-          />
-        </g>
-      </svg>
-      <h1>EARTHQUAKE ALERT</h1>
-
-      <h2>Stay calm. Drop, Cover, and Hold.</h2>
-
-      <ul>
-        <li>Stay away from windows and falling objects. If outdoors, move to an open area away from buildings and power lines.
-        </li>
-        <li>After shaking stops, watch for aftershocks. Evacuate through designated routes when instructed.</li>
-        
-      </ul>
-`;
-    document.body.appendChild(div);
-    div.classList.add("show");
-    overlay2.classList.add("active");
-    const p = document.createElement("p");
-    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-    })}`;
-    div.appendChild(p);
-    const btn = document.createElement("button");
-    btn.textContent = "Proceed";
-    btn.classList.add("proceed");
-    div.appendChild(btn);
-    btn.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        earthquakeAlertSound.pause();
-        getReports();
-    });
-    overlay2.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        earthquakeAlertSound.pause();
-        getReports();
-    });
-    earthquakeAlertSound.play();
-}
-if(data.type === "School Fire"){
-     const div = document.createElement("div");
-     div.classList.add("alert-box");
-     div.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M240-400q0 52 21 98.5t60 81.5q-1-5-1-9v-9q0-32 12-60t35-51l113-111 113 111q23 23 35 51t12 60v9q0 4-1 9 39-35 60-81.5t21-98.5q0-50-18.5-94.5T648-574q-20 13-42 19.5t-45 6.5q-62 0-107.5-41T401-690q-39 33-69 68.5t-50.5 72Q261-513 250.5-475T240-400Zm240 52-57 56q-11 11-17 25t-6 29q0 32 23.5 55t56.5 23q33 0 56.5-23t23.5-55q0-16-6-29.5T537-292l-57-56Zm0-492v132q0 34 23.5 57t57.5 23q18 0 33.5-7.5T622-658l18-22q74 42 117 117t43 163q0 134-93 227T480-80q-134 0-227-93t-93-227q0-129 86.5-245T480-840Z"/></svg>
-      <h1>FIRE ALERT</h1>
-
-      <h2>There is an ongoing fire incident at ${data.location}. Stay calm. Evacuate quickly and safely.</h2>
-
-      <ul>
-       <li>Follow the designated evacuation routes and exit the building immediately. Stay low if there is smoke and cover your nose and mouth if possible.</li>
-       <li>Do not use elevators. Use the nearest safe stairway or exit. Once outside, proceed to the designated assembly area and follow staff instructions.</li>
-     </ul>
-     `;
-    document.body.appendChild(div);
-    div.classList.add("show");
-    overlay2.classList.add("active");
-    const p = document.createElement("p");
-    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-    })}`;
-    div.appendChild(p);
-    const btn = document.createElement("button");
-    btn.textContent = "Proceed";
-    btn.classList.add("proceed");
-    div.appendChild(btn);
-    btn.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        fireAlertSound.pause();
-        getReports();
-    });
-    overlay2.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        fireAlertSound.pause();
-        getReports();
-
-    });
-    fireAlertSound.play();
-}
-if(data.type === "Armed Violence"){
-   const div = document.createElement("div");
-     div.classList.add("alert-box");
-     div.innerHTML = `
-     <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M200-160v-80h64l79-263q8-26 29.5-41.5T420-560h120q26 0 47.5 15.5T617-503l79 263h64v80H200Zm148-80h264l-72-240H420l-72 240Zm92-400v-200h80v200h-80Zm238 99-57-57 142-141 56 56-141 142Zm42 181v-80h200v80H720ZM282-541 141-683l56-56 142 141-57 57ZM40-360v-80h200v80H40Zm440 120Z"/></svg>
-
-    <h1>ACTIVE SHOOTER ALERT</h1>
-
-    <h2>
-    There is an active shooter at ${data.location}.
-    Stay calm and follow these safety instructions.
-    </h2>
-
-    <ul>
-   <li>If safe, escape immediately and move away from the threat. If you cannot escape, lock or barricade the door and stay hidden.</li>
-   <li>If you encounter responders, keep your hands visible and follow their instructions. Once safe, contact authorities and do not return until cleared.
-    </ul>
-    `;
-    document.body.appendChild(div);
-    div.classList.add("show");
-    overlay2.classList.add("active");
-    const p = document.createElement("p");
-    p.textContent = `Reported at ${new Date(data.time).toLocaleString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-    })}`;
-    div.appendChild(p);
-    const btn = document.createElement("button");
-    btn.textContent = "Proceed";
-    btn.classList.add("proceed");
-    div.appendChild(btn);
-    btn.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        schoolShooterAlertSound.pause();
-        getReports();
-    });
-    overlay2.addEventListener("click", ()=>{
-        div.classList.remove("show");
-        overlay2.classList.remove("active");
-        schoolShooterAlertSound.pause();
-        getReports();
-    });
-    schoolShooterAlertSound.play();
-}
-});
 
 
 
