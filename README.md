@@ -57,11 +57,10 @@ SafePLMUN uses a client-server architecture. The frontend communicates with the 
 
 The backend separates application responsibilities into routes, controllers, and repositories to help keep request handling and database operations organized.
 
-## Deployment
+## Live Deployment
 
 - **Frontend:** https://safeplmun.hamsaampaso1.workers.dev
-- **Backend:** https://safeplmun.onrender.com
-- **Source Code:** https://github.com/HamsaAmpaso/SafePLMUN
+
 
 ## Security
 
