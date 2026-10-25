@@ -5,7 +5,7 @@ export function centralizedErrorMiddleware(
     res: Response,
     next: NextFunction
 ) {
-    console.error("🔥 ERROR:", err);
+    console.error(" ERROR:", err);
 
     res.status(err.status || 500).json({
         success: false,

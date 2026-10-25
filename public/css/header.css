@@ -16,7 +16,7 @@ header{
 header.scrolled {
     background-color: var(--deep-forest-green);
     
-    max-height: 90px;
+    max-height: 65px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     background: linear-gradient(
         90deg,
