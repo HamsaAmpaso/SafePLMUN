@@ -27,6 +27,8 @@ import { requestMedicController } from "./user.controllers.js";
 import { requestSchema } from "./user.validations.js";
 import { getALLUSERMedicRequestsController } from "./user.controllers.js";
 import { checkBanUser } from "../utilities/banUserMiddleware.js";
+import { personalDashboardController } from "./user.controllers.js";
+import { leaderboardController } from "./user.controllers.js";
 export const userRouter = Router();
 userRouter.post('/reports', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), reportLimiter, validator(reportSchema), checkBanUser, asyncControllerHandler(reportAnIncidentController));
 userRouter.get('/reports', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), asyncControllerHandler(getReportsController));
@@ -46,3 +48,5 @@ userRouter.get('/buddies/status', authenticationMiddleware, authorize("user", "c
 userRouter.get('/notifications', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), asyncControllerHandler(getNotificationsController));
 userRouter.post('/medic-requests', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), reportLimiter, validator(requestSchema), checkBanUser, asyncControllerHandler(requestMedicController)); 
 userRouter.get('/requests', authenticationMiddleware, authorize("user", "admin"), asyncControllerHandler(getALLUSERMedicRequestsController));
+userRouter.get('/dashboard', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), asyncControllerHandler(personalDashboardController));
+userRouter.get('/leaderboard', authenticationMiddleware, authorize("user", "clinic-side-operator", "admin"), asyncControllerHandler(leaderboardController) );

@@ -29,9 +29,31 @@ import { banUserAPICaller } from "./admin-api-callers.js";
 import { unbanUserAPICaller } from "./admin-api-callers.js";
 import { seeAllUSersStatusAPICaller } from "./admin-api-callers.js";
 import { adminDashboardAPICaller } from "./admin-api-callers.js";
+import { personalDashboardAPICaller } from "./user-api-callers.js";
+import { leaderboardAPICaller } from "./user-api-callers.js";
 const socket = io("https://safeplmun.onrender.com", {
     withCredentials: true
 });
+function getCurrentLocation() {
+    return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) {
+            reject(new Error("Geolocation is not supported."));
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            ({ coords: { latitude, longitude } }) => {
+                resolve(`Lat: ${latitude}, Lng: ${longitude}`);
+            },
+            (error) => reject(error),
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    });
+}
 const statusCheckBTNMObile = document.querySelector("#status-nav-btn");
 const statusCheckBTN = document.querySelector("#admin-status-check-btn");
 const falseAlarmErrorBox = document.querySelector("#false-alarm-error-box");
@@ -606,15 +628,7 @@ async function renderProfile(arr, reports){
            const ul = document.createElement("ul");
            helpInputBox.appendChild(ul);
 
-           const label2 = document.createElement('label');
-           label2.textContent = `Extra instructions:`;
-           helpInputBox.appendChild(label2);
-           const span2 = document.createElement("span");
-           span2.classList.add("error");
-           helpInputBox.appendChild(span2);
-           const extraInput = document.createElement('input');
-           extraInput.placeholder = `Enter extra instructions`;
-           helpInputBox.appendChild(extraInput);
+           
 
            const confirm = document.createElement('button');
            confirm.id = "help-confirm-final";
@@ -630,21 +644,21 @@ async function renderProfile(arr, reports){
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errore");
-            span2.classList.remove("errore");
+            
+            span.classList.remove("errored");
+          
             locationInput.value = "";
-            extraInput.value = "";
+        
            });
            cancel.addEventListener("click", ()=>{
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errore");
-            span2.classList.remove("errore");
+           
+            span.classList.remove("errored");
+           
             locationInput.value = "";
-            extraInput.value = "";
+            
            });
 
            locationInput.addEventListener("click", ()=>{
@@ -665,16 +679,9 @@ async function renderProfile(arr, reports){
 
             locationInput.addEventListener("input", ()=>{
                span.textContent = "";
-            span2.textContent = "";
+           
             span.classList.remove("errored");
-            span2.classList.remove("errored");
-            });
-
-            extraInput.addEventListener("input", ()=>{
-               span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errored");
-            span2.classList.remove("errored");
+           
             });
            let confirmingLocation = false;
            confirm.addEventListener("click", async ()=>{
@@ -685,20 +692,11 @@ async function renderProfile(arr, reports){
                 span.classList.add("errored");
                 hasError = true;
              }
-             if(extraInput.value.trim() === ""){
-                span2.textContent = 'Please enter extra instructions to help responders get to you quicker!';
-                span2.classList.add("errored");
-                hasError = true;
-             }
-             if(extraInput.value.length > 20){
-                span2.textContent = 'Please enter a shorter extra instruction!';
-                span2.classList.add("errored");
-                extraInput.value = "";
-                hasError = true;
-             }
+          
+           
              if(hasError)return;
              const location = locationInput.value.trim();
-             const extra = extraInput.value.trim();
+             const extra = await getCurrentLocation();
              confirmingLocation = true;
              confirm.disabled = true;
              try{
@@ -722,15 +720,16 @@ async function renderProfile(arr, reports){
                 overlay3.classList.remove("active");
                 document.body.removeChild(helpInputBox);
                 span.textContent = "";
-                span2.textContent = "";
+                
                 span.classList.remove("errored");
-                span2.classList.remove("errored");
+               
                 locationInput.value = "";
-                extraInput.value = "";
+               
                 getReports();
              }catch(err){
                 helpErrorBox.classList.add("shown");
                 overlay.classList.add("active");
+                 getReports();
              }finally{
                 confirmingLocation = false;
                 confirm.disabled = false;
@@ -1093,15 +1092,7 @@ async function renderVisitProfile(arr, reports){
            const ul = document.createElement("ul");
            helpInputBox.appendChild(ul);
 
-           const label2 = document.createElement('label');
-           label2.textContent = `Extra instructions:`;
-           helpInputBox.appendChild(label2);
-           const span2 = document.createElement("span");
-           span2.classList.add("error");
-           helpInputBox.appendChild(span2);
-           const extraInput = document.createElement('input');
-           extraInput.placeholder = `Enter extra instructions`;
-           helpInputBox.appendChild(extraInput);
+           
 
            const confirm = document.createElement('button');
            confirm.id = "help-confirm-final";
@@ -1117,21 +1108,21 @@ async function renderVisitProfile(arr, reports){
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errore");
-            span2.classList.remove("errore");
+           
+            span.classList.remove("errored");
+            
             locationInput.value = "";
-            extraInput.value = "";
+            
            });
            cancel.addEventListener("click", ()=>{
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
+            
             span.classList.remove("errore");
-            span2.classList.remove("errore");
+           
             locationInput.value = "";
-            extraInput.value = "";
+           
            });
 
            locationInput.addEventListener("click", ()=>{
@@ -1152,17 +1143,12 @@ async function renderVisitProfile(arr, reports){
 
             locationInput.addEventListener("input", ()=>{
                span.textContent = "";
-            span2.textContent = "";
+          ;
             span.classList.remove("errored");
-            span2.classList.remove("errored");
+            
             });
 
-            extraInput.addEventListener("input", ()=>{
-               span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errored");
-            span2.classList.remove("errored");
-            });
+          
            let confirmingLocation = false;
            confirm.addEventListener("click", async ()=>{
             let hasError = false;
@@ -1172,20 +1158,10 @@ async function renderVisitProfile(arr, reports){
                 span.classList.add("errored");
                 hasError = true;
              }
-             if(extraInput.value.trim() === ""){
-                span2.textContent = 'Please enter extra instructions to help responders get to you quicker!';
-                span2.classList.add("errored");
-                hasError = true;
-             }
-              if(extraInput.value.length > 20){
-                span2.textContent = 'Please enter a shorter extra instruction!';
-                span2.classList.add("errored");
-                extraInput.value = "";
-                hasError = true;
-             }
+            
              if(hasError)return;
              const location = locationInput.value.trim();
-             const extra = extraInput.value.trim();
+             const extra = await getCurrentLocation();
              confirmingLocation = true;
              confirm.disabled = true;
              try{
@@ -1209,15 +1185,17 @@ async function renderVisitProfile(arr, reports){
                 overlay3.classList.remove("active");
                 document.body.removeChild(helpInputBox);
                 span.textContent = "";
-                span2.textContent = "";
+               
                 span.classList.remove("errored");
-                span2.classList.remove("errored");
+               
                 locationInput.value = "";
-                extraInput.value = "";
+                
                 getReports();
              }catch(err){
+                console.log(err);
                 helpErrorBox.classList.add("shown");
                 overlay.classList.add("active");
+                 getReports();
              }finally{
                 confirmingLocation = false;
                 confirm.disabled = false;
@@ -1442,16 +1420,6 @@ async function renderNewsFeed(arr){
            const ul = document.createElement("ul");
            helpInputBox.appendChild(ul);
 
-           const label2 = document.createElement('label');
-           label2.textContent = `Extra instructions:`;
-           helpInputBox.appendChild(label2);
-           const span2 = document.createElement("span");
-           span2.classList.add("error");
-           helpInputBox.appendChild(span2);
-           const extraInput = document.createElement('input');
-           extraInput.placeholder = `Enter extra instructions`;
-           helpInputBox.appendChild(extraInput);
-
            const confirm = document.createElement('button');
            confirm.id = "help-confirm-final";
            confirm.textContent = "Confirm";
@@ -1466,19 +1434,19 @@ async function renderNewsFeed(arr){
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errore");
-            span2.classList.remove("errore");
+          
+            span.classList.remove("errored");
+            
             locationInput.value = "";
-            extraInput.value = "";
+           
            });
            cancel.addEventListener("click", ()=>{
             overlay3.classList.remove("active");
             document.body.removeChild(helpInputBox);
             span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errore");
-            span2.classList.remove("errore");
+            
+            span.classList.remove("errored");
+          
             locationInput.value = "";
             extraInput.value = "";
            });
@@ -1501,17 +1469,12 @@ async function renderNewsFeed(arr){
 
             locationInput.addEventListener("input", ()=>{
                span.textContent = "";
-            span2.textContent = "";
+           
             span.classList.remove("errored");
-            span2.classList.remove("errored");
+            
             });
 
-            extraInput.addEventListener("input", ()=>{
-               span.textContent = "";
-            span2.textContent = "";
-            span.classList.remove("errored");
-            span2.classList.remove("errored");
-            });
+          
            let confirmingLocation = false;
            confirm.addEventListener("click", async ()=>{
             let hasError = false;
@@ -1521,20 +1484,10 @@ async function renderNewsFeed(arr){
                 span.classList.add("errored");
                 hasError = true;
              }
-             if(extraInput.value.trim() === ""){
-                span2.textContent = 'Please enter extra instructions to help responders get to you quicker!';
-                span2.classList.add("errored");
-                hasError = true;
-             }
-              if(extraInput.value.length > 20){
-                span2.textContent = 'Please enter a shorter extra instruction!';
-                span2.classList.add("errored");
-                extraInput.value = "";
-                hasError = true;
-             }
+          
              if(hasError)return;
              const location = locationInput.value.trim();
-             const extra = extraInput.value.trim();
+             const extra = await getCurrentLocation();
              confirmingLocation = true;
              confirm.disabled = true;
              try{
@@ -1558,15 +1511,17 @@ async function renderNewsFeed(arr){
                 overlay3.classList.remove("active");
                 document.body.removeChild(helpInputBox);
                 span.textContent = "";
-                span2.textContent = "";
+               
                 span.classList.remove("errored");
-                span2.classList.remove("errored");
+               
                 locationInput.value = "";
-                extraInput.value = "";
+             
                 getReports();
              }catch(err){
+                console.log(err);
                 helpErrorBox.classList.add("shown");
                 overlay.classList.add("active");
+                 getReports();
              }finally{
                 confirmingLocation = false;
                 confirm.disabled = false;
@@ -1872,6 +1827,8 @@ overlay.addEventListener("click", ()=>{
       unbanUserErrorBox.classList.remove('shown');
        statusErrorBox.classList.remove("shown");
        adminDashboardErrorBox.classList.remove("shown");
+       personalDashboardErrorBox.classList.remove("shown");
+       leaderboeardErrorBox.classList.remove("shown");
 });
 
 closeFalseAlarmErrorBox.addEventListener("click", ()=>{
@@ -3273,31 +3230,31 @@ function renderCheckOnBuddiesUI(arr){
           if(b.status){
              status.textContent = b.status;
           }else{
-            status.textContent = `Unknown`;
+            status.textContent = `N/A`;
           }
           entry.appendChild(status);
           const location = document.createElement("p");
           if(b.location){
             location.textContent = b.location;
           }else{
-            location.textContent = 'Unknown';
+            location.textContent = `N/A`;
           }
           entry.appendChild(location);
           const extra = document.createElement("p");
           if(b.details){
             extra.textContent = b.details;
           }else{
-            extra.textContent = 'None';
+            extra.textContent = `N/A`;
           }
           entry.appendChild(extra);
           const updated =  document.createElement("p");
           if(b.statusCreatedAt){
             updated.textContent = `${new Date(b.statusCreatedAt).toLocaleString("en-PH", {
-          month: "short",
-          day: "numeric",
-          hour: "numeric",
-          minute: "2-digit"
-        })}`  
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+})}`  
        }else{
           updated.textContent = 'Pending';
        }
@@ -4334,31 +4291,31 @@ function renderAllUsersStatusCheckUI(arr){
           if(b.status){
              status.textContent = b.status;
           }else{
-            status.textContent = `Unknown`;
+            status.textContent = `N/A`;
           }
           entry.appendChild(status);
           const location = document.createElement("p");
           if(b.location){
             location.textContent = b.location;
           }else{
-            location.textContent = 'Unknown';
+            location.textContent = `N/A`;
           }
           entry.appendChild(location);
           const extra = document.createElement("p");
           if(b.details){
             extra.textContent = b.details;
           }else{
-            extra.textContent = 'None';
+            extra.textContent = `N/A`;
           }
           entry.appendChild(extra);
           const updated =  document.createElement("p");
           if(b.statusCreatedAt){
             updated.textContent = `${new Date(b.statusCreatedAt).toLocaleString("en-PH", {
-          month: "short",
-          day: "numeric",
-          hour: "numeric",
-          minute: "2-digit"
-        })}`  
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+})}`  
        }else{
           updated.textContent = 'Pending';
        }
@@ -4666,6 +4623,429 @@ plugins: {
     }
 });
 
+
+}
+
+function renderPersonalDashboard(obj){
+
+    newsFeedDiv.innerHTML = "";
+      const h3 = document.createElement("h3");
+      h3.textContent = 'Personal Dashboard';
+      newsFeedDiv.appendChild(h3);
+      const dashboardDiv = document.createElement("div");
+      dashboardDiv.classList.add("dashboard-div");
+      newsFeedDiv.appendChild(dashboardDiv);
+
+      const requests = document.createElement("div");
+      requests.classList.add("requests");
+      dashboardDiv.appendChild(requests);
+      const requestsH5 = document.createElement("h5");
+      requestsH5.textContent = `Buddies`;
+      requests.appendChild(requestsH5);
+      const requestP = document.createElement("p");
+      requestP.textContent = obj.buddies;
+      requests.appendChild(requestP);
+
+      const resolvesDIV = document.createElement('div');
+      resolvesDIV.classList.add('resolves');
+      dashboardDiv.appendChild(resolvesDIV);
+      const resolvesH5 = document.createElement("h5");
+      resolvesH5.textContent = 'Reports';
+      resolvesDIV.appendChild(resolvesH5);
+      const resolvedP = document.createElement("p");
+      resolvedP.textContent = obj.reports;
+      resolvesDIV.appendChild(resolvedP);
+
+      const pendingTodayDiv = document.createElement('div');
+      pendingTodayDiv.classList.add("pendingToday");
+      dashboardDiv.appendChild(pendingTodayDiv);
+      const PendingsTodayH5 = document.createElement("h5");
+      PendingsTodayH5.textContent = 'Requests';
+      pendingTodayDiv.appendChild(PendingsTodayH5);
+      const pendingTodayP = document.createElement("p");
+      pendingTodayP.textContent = obj.requests;
+      pendingTodayDiv.appendChild(pendingTodayP);
+
+      const resolveTodayDiv = document.createElement('div');
+      resolveTodayDiv.classList.add("resolvedToday");
+      dashboardDiv.appendChild(resolveTodayDiv);
+      const resolveTodayH5 = document.createElement("h5");
+      resolveTodayH5.textContent = 'Misfires';
+      resolveTodayDiv.appendChild(resolveTodayH5);
+      const resolveTodayP = document.createElement("p");
+      resolveTodayP.textContent = obj.misfires;
+      resolveTodayDiv.appendChild(resolveTodayP);
+
+      const chartDiv = document.createElement("div");
+      chartDiv.classList.add("requestsLast7Days");
+      dashboardDiv.appendChild(chartDiv);
+
+      const canvas = document.createElement("canvas");
+      canvas.id = "requests-line-chart";
+      chartDiv.appendChild(canvas);
+
+      const requestsPerDay = obj.reportsPerday ?? [];
+
+        const labels = requestsPerDay.map(item => {
+        const date = new Date(`${item.day}T00:00:00`);
+
+        return date.toLocaleDateString("en-PH", {
+            month: "short",
+            day: "numeric"
+        });
+    });
+
+      const requestsData = requestsPerDay.map(item => item.reports);
+      const lineChart = new Chart(canvas, {
+        type: "line",
+
+        data: {
+            labels,
+
+            datasets: [{
+                label: "Emergency Reports",
+                data: requestsData,
+                borderColor: "#008000",
+                backgroundColor: "rgba(0, 128, 0, 0.12)",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: "#008000",
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: context =>
+                            `${context.parsed.y} requests`
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                        stepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: "Reports Last 7 Days"
+                    }
+                }
+            }
+        }
+    });
+
+    const pieDiv = document.createElement('div');
+    pieDiv.classList.add("requestsDistributionPie");
+    dashboardDiv.appendChild(pieDiv);
+
+    const pieCanvas = document.createElement("canvas");
+    pieCanvas.id = "requests-distribution-chart";
+    pieDiv.appendChild(pieCanvas);
+
+    console.log("Pie chart values:", [
+    Number(obj.fires),
+    Number(obj.schoolViolences),
+    Number(obj.earthquakes)
+]);
+
+    const pie = new Chart(pieCanvas, {
+    type: "doughnut",
+    data: {
+        labels: ["Fire", "Violence", "Earthquake"],
+        datasets: [{
+            data: [
+                Number(obj.fires),
+                Number(obj.schoolViolences),
+                Number(obj.earthquakes)
+            ],
+            backgroundColor: [
+                "#D4A017",
+                "#E6392E",
+                "#008000"
+
+            ],
+            borderColor: "#ffffff",
+            borderWidth: 3,
+            hoverOffset: 6
+        }]
+    },
+    options: {
+responsive: true,
+maintainAspectRatio: false,
+cutout: "60%",
+
+plugins: {
+    title: {
+        display: true,
+        text: "Reports Distribution"
+    },
+
+    legend: {
+        position: "bottom"
+    },
+
+    tooltip: {
+        callbacks: {
+            label: context =>
+                `${context.label}: ${context.parsed} reports`
+        }
+    }
+}
+
+}
+});
+
+
+const chartDiv2 = document.createElement("div");
+      chartDiv2.classList.add("requestsPerBuilding");
+      dashboardDiv.appendChild(chartDiv2);
+
+      const canvas2 = document.createElement("canvas");
+      canvas2.id = "requests-line-chart2";
+      chartDiv2.appendChild(canvas2);
+
+      const requestsPerDay2 = obj.requestsPerDay ?? [];
+
+        const labels2 = requestsPerDay2.map(item => {
+        const date = new Date(`${item.day}T00:00:00`);
+
+        return date.toLocaleDateString("en-PH", {
+            month: "short",
+            day: "numeric"
+        });
+    });
+
+      const requestsData2 = requestsPerDay2.map(item => item.requests);
+      const lineChart2 = new Chart(canvas2, {
+        type: "line",
+
+        data: {
+            labels: labels2,
+
+            datasets: [{
+                label: "Emergency Reports",
+                data: requestsData2,
+                borderColor: "#008000",
+                backgroundColor: "rgba(0, 128, 0, 0.12)",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: "#008000",
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: context =>
+                            `${context.parsed.y} requests`
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                        stepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: "Requests Last 7 Days"
+                    }
+                }
+            }
+        }
+    });
+
+
+    
+
+
+}
+const personalDashboardBTN = document.querySelector("#user-dashboard");
+const personalDashboardBTNMobile = document.querySelector("#personal-dashboard-nav-btn");
+const personalDashboardErrorBox = document.querySelector("#personal-dashboard-error-box");
+const closePersonalDashboardErrorBox = document.querySelector(".okay-personal-dashboard");
+async function personalDashboardReusable(){
+    try{
+      const dashboard = await personalDashboardAPICaller();
+      if(dashboard.forceLogout){
+        forceLogout();
+      }
+      if(!dashboard.success){
+         personalDashboardErrorBox.classList.add("shown");
+         overlay.classList.add("active");
+         return;
+      }
+      console.log(dashboard);
+      renderPersonalDashboard(dashboard.data);
+    }catch(err){
+      personalDashboardErrorBox.classList.add("shown");
+      overlay.classList.add("active");
+    }
+}
+closePersonalDashboardErrorBox.addEventListener("click", ()=>{
+    personalDashboardErrorBox.classList.remove("shown");
+    overlay.classList.remove("active");
+});
+personalDashboardBTN.addEventListener("click", ()=>{
+    personalDashboardReusable();
+});
+personalDashboardBTNMobile.addEventListener("click", ()=>{
+    overlay.classList.remove("active");
+    navUser.classList.remove("show");
+    personalDashboardReusable();
+});
+
+const leaderboardBTNMobile = document.querySelector("#leaderboard-nav-btn");
+const leaderboardBTN = document.querySelector("#user-leaderboard");
+const leaderboeardErrorBox = document.querySelector("#leaderboard-error-box");
+const closeLeaderboardErrorBox = document.querySelector(".okay-leaderboard");
+
+async function leaderboardReusable(){
+    try{
+        const leaderboard = await leaderboardAPICaller();
+        if(leaderboard.forceLogout){
+            forceLogout();
+        }
+        if(!leaderboard.success){
+            leaderboeardErrorBox.classList.add("shown");
+            overlay.classList.add("active");
+            return;
+        }
+        console.log(leaderboard.data);
+        renderLeaderboard(leaderboard.data);
+    }catch(err){
+        console.log(err);
+        leaderboeardErrorBox.classList.add("shown");
+        overlay.classList.add("active");
+    }
+}
+closeLeaderboardErrorBox.addEventListener("click", ()=>{
+    leaderboeardErrorBox.classList.remove("shown");
+    overlay.classList.remove("active");
+});
+leaderboardBTNMobile.addEventListener("click", ()=>{
+    overlay.classList.remove("active");
+    navUser.classList.remove("show");
+    leaderboardReusable();
+});
+leaderboardBTN.addEventListener("click", ()=>{
+    leaderboardReusable();
+});
+function renderLeaderboard(arr){
+     newsFeedDiv.innerHTML = "";
+    const h3 = document.createElement("h3");
+    h3.textContent = 'SafePLMUN Leaderboard';
+    newsFeedDiv.appendChild(h3);
+    
+        const check_div = document.createElement('div');
+        check_div.classList.add("check-div");
+        newsFeedDiv.appendChild(check_div);
+        const top = document.createElement("div");
+        top.classList.add("top");
+        check_div.appendChild(top);
+        const report = document.createElement("h3");
+        report.textContent = `Top 10 SafePLMUN Contributors`;
+        top.appendChild(report);
+       const bottom = document.createElement("div");
+       bottom.classList.add("bottom");
+       check_div.appendChild(bottom);
+        const headerEntry = document.createElement("div");
+          headerEntry.classList.add("entry");
+          headerEntry.classList.add("header");
+          const one = document.createElement("p");
+          one.textContent = 'Name';
+          headerEntry.appendChild(one);
+          const two = document.createElement("p");
+          two.textContent = 'Points';
+          headerEntry.appendChild(two);
+          const three = document.createElement("p");
+          three.textContent = 'Role';
+          headerEntry.appendChild(three);
+          const four = document.createElement("p");
+          four.textContent = `Occupation`;
+          headerEntry.appendChild(four);
+          const five = document.createElement("p");
+          five.textContent = `Joined at`;
+          headerEntry.appendChild(five);
+          bottom.appendChild(headerEntry)
+       for(const b of arr){
+          const entry = document.createElement("div");
+          entry.classList.add("entry");
+          bottom.appendChild(entry);
+          const bundle = document.createElement('div');
+          bundle.classList.add("bundle");
+          entry.appendChild(bundle);
+          const img = document.createElement("img");
+          img.src = b.profile_pic;
+          bundle.appendChild(img);
+          const buddy = document.createElement("h4");
+          buddy.textContent = b.name.split(" ")[0];
+          bundle.appendChild(buddy);
+          const status =  document.createElement("p");
+          status.textContent = b.total_contributions;
+          entry.appendChild(status);
+          const location = document.createElement("p");
+          location.textContent = b.role;
+          entry.appendChild(location);
+          const extra = document.createElement("p");
+          extra.textContent = b.occupation;
+          entry.appendChild(extra);
+          const updated =  document.createElement("p");
+        
+         updated.textContent = new Date(b.created_at).toLocaleString("en-PH", {
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+});
+      
+       entry.appendChild(updated);
+    }
 
 }
 

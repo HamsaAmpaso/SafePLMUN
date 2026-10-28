@@ -281,3 +281,131 @@ export async function getAllUserMedicalRequestRepository(userid: string){
         throw err;
     }
 }
+export async function personalDashboard(userid: string){
+    try{
+        const dashboard = await poolDB.query(`SELECT (SELECT COUNT(*) FROM buddies WHERE user_id = $1) AS "buddies", (SELECT COUNT(*) FROM reports WHERE reported_by = $1) AS "reports", (SELECT COUNT(*) FROM requests WHERE requested_by = $1) AS "requests", (SELECT COUNT(*) FROM reports WHERE reported_by = $1 AND isfalsealarm = TRUE) AS "misfires",      (SELECT json_agg(
+        json_build_object(
+           'day', days.day::date,
+           'reports', COALESCE(daily.reports, 0)
+        )
+           ORDER BY days.day)
+           
+           FROM generate_series(
+              (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date - 6,
+              (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date,
+              INTERVAL '1 day'
+           ) AS days(day)
+           LEFT JOIN (
+           
+             SELECT
+               (created_at AT TIME ZONE 'Asia/Manila')::date AS day,
+               COUNT(*) AS reports
+               FROM reports
+               WHERE isfalsealarm = false AND reported_by = $1 AND created_at >= (
+            ((CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date - 6)
+            AT TIME ZONE 'Asia/Manila'
+            )
+            AND created_at < (
+            ((CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date + 1)
+            AT TIME ZONE 'Asia/Manila'
+        )
+            
+           GROUP BY (created_at AT TIME ZONE 'Asia/Manila')::date 
+
+
+           ) AS daily ON daily.day = days.day::date
+           ) AS "reportsPerday",
+
+
+            (
+    SELECT json_agg(
+        json_build_object(
+            'day', days.day::date,
+            'requests', COALESCE(daily.requests, 0)
+        )
+        ORDER BY days.day
+    )
+    FROM generate_series(
+        (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date - 6,
+        (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date,
+        INTERVAL '1 day'
+    ) AS days(day)
+    LEFT JOIN (
+        SELECT
+            (created_at AT TIME ZONE 'Asia/Manila')::date AS day,
+            COUNT(*) AS requests
+        FROM requests
+        WHERE created_at >= (
+            ((CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date - 6)
+            AT TIME ZONE 'Asia/Manila'
+        )
+        AND created_at < (
+            ((CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Manila')::date + 1)
+            AT TIME ZONE 'Asia/Manila'
+        )
+        AND requested_by = $1
+        GROUP BY (created_at AT TIME ZONE 'Asia/Manila')::date
+    ) AS daily
+        ON daily.day = days.day::date
+) AS "requestsPerDay",
+ 
+(SELECT COUNT(*) FROM reports WHERE reported_by = $1 AND type = 'School Fire' AND reports.isfalsealarm = false ) AS "fires",
+(SELECT COUNT(*) FROM reports WHERE reported_by = $1 AND type = 'Earthquake' AND reports.isfalsealarm = false ) AS "earthquakes",
+(SELECT COUNT(*) FROM reports WHERE reported_by = $1 AND type = 'Armed Violence' AND reports.isfalsealarm = false ) AS "schoolViolences"
+
+`, [userid]);
+ return dashboard.rows[0];
+        }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+export async function leaderboardRepository() {
+    try {
+        const leaderboard = await poolDB.query(`
+            WITH contributions AS (
+                SELECT
+                    reported_by AS user_id,
+                    COUNT(*) AS total
+                FROM reports
+                WHERE isfalsealarm = FALSE
+                GROUP BY reported_by
+
+                UNION ALL
+
+                SELECT
+                    requested_by AS user_id,
+                    COUNT(*) AS total
+                FROM requests
+                GROUP BY requested_by
+            )
+            SELECT
+                u.userid,
+                u.name,
+                u.profile_pic,
+                u.role,
+                u.occupation,
+                u.created_at,
+                SUM(c.total) AS total_contributions
+            FROM contributions c
+            JOIN users u ON u.userid = c.user_id
+            GROUP BY
+                u.userid,
+                u.name,
+                u.profile_pic,
+                u.role,
+                u.occupation,
+                u.created_at
+            ORDER BY
+                total_contributions DESC,
+                u.name ASC
+            LIMIT 10
+        `);
+
+        return leaderboard.rows;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}

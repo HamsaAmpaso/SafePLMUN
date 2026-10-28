@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { reportAnIncidentService } from "./user.services.js";
+import { personalDashboardService, reportAnIncidentService } from "./user.services.js";
 import { getReportsService } from "./user.services.js";
 import { markAsSafeService } from "./user.services.js";
 import { getStatusService } from "./user.services.js";
@@ -16,6 +16,8 @@ import { checkOnBuddiesService } from "./user.services.js";
 import { getNotificationsService } from "./user.services.js";
 import { requestMedicService } from "./user.services.js";
 import { getALLUSerMEdicRequestsService } from "./user.services.js";
+import { personalDashboard } from "./user.repositories.js";
+import { leaderboardService } from "./user.services.js";
 export async function reportAnIncidentController(req: Request, res: Response, next: NextFunction){
     try{
         const userid = req.auth?.userId!;
@@ -249,6 +251,29 @@ export async function getALLUSERMedicRequestsController(req: Request, res: Respo
     try{
         const userid = req.auth?.userId!;
         const data = await getALLUSerMEdicRequestsService(userid);
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    }catch(err){
+        next(err);
+    }
+}
+export async function personalDashboardController(req: Request, res: Response, next: NextFunction){
+    try{
+        const userid = req.auth?.userId!
+        const data = await personalDashboardService(userid);
+        res.status(200).json({
+            success: true,
+            data: data
+        });
+    }catch(err){
+        next(err);
+    }
+}
+export async function leaderboardController(req: Request, res: Response, next: NextFunction){
+    try{
+        const data = await leaderboardService();
         res.status(200).json({
             success: true,
             data: data

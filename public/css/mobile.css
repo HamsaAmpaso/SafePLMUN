@@ -722,6 +722,9 @@ footer #dev2{
     translate: -75% -95%;
     display: none;
 }
+.news-feed .check-div .bottom .entry p{
+    font-size: 0.48rem;
+}
 
 }
 @media (min-width: 360px) and (max-width: 379px){

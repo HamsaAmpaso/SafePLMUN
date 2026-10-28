@@ -447,12 +447,7 @@
             </div>
 
             <div id="admin-status-check-btn" class="sidebar-inner">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                
-                viewBox="0 -960 960 960"
-                
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                 <path
                   d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Zm40-70.5 48-110q-42-15-72.5-46.5T292-412l-110 46q23 64 71 112t111 72Zm-72-366q17-42 47.5-73.5T412-668l-46-110q-64 24-112 72t-72 112l110 46Zm273 153q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm31 213q63-24 110.5-71.5T778-364l-110-48q-15 42-46 72.5T550-292l46 110Zm72-368 110-46q-24-63-71.5-110.5T596-778l-46 112q41 15 71 45.5t47 70.5Z"
                 />
@@ -492,6 +487,23 @@
                 />
               </svg>
               <h3>Users</h3>
+            </div>
+            <div id="user-dashboard" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
+                />
+              </svg>
+              <h3>Personal Dashboard</h3>
+            </div>
+
+            <div id="user-leaderboard" class="sidebar-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path
+                  d="M607.5-212.5Q660-265 660-340t-52.5-127.5Q555-520 480-520t-127.5 52.5Q300-415 300-340t52.5 127.5Q405-160 480-160t127.5-52.5ZM363-572q20-11 42.5-17.5T451-598L350-800H250l113 228Zm234 0 114-228H610l-85 170 19 38q14 4 27 8.5t26 11.5ZM256-208q-17-29-26.5-62.5T220-340q0-36 9.5-69.5T256-472q-42 14-69 49.5T160-340q0 47 27 82.5t69 49.5Zm448 0q42-14 69-49.5t27-82.5q0-47-27-82.5T704-472q17 29 26.5 62.5T740-340q0 36-9.5 69.5T704-208ZM403.5-91.5Q367-103 336-123q-9 2-18 2.5t-19 .5q-91 0-155-64T80-339q0-87 58-149t143-69L120-880h280l80 160 80-160h280L680-559q85 8 142.5 70T880-340q0 92-64 156t-156 64q-9 0-18.5-.5T623-123q-31 20-67 31.5T480-80q-40 0-76.5-11.5ZM480-340ZM363-572 250-800l113 228Zm234 0 114-228-114 228ZM406-230l28-91-74-53h91l29-96 29 96h91l-74 53 28 91-74-56-74 56Z"
+                />
+              </svg>
+              <h3>Leaderboard</h3>
             </div>
 
             <hr class="second" />
@@ -546,6 +558,8 @@
       <p class="nav-hide" id="news-nav-btn">Newsfeed</p>
       <p class="nav-hide" id="see-all-users-nav-btn">Users</p>
       <p class="nav-hide" id="profile-nav-btn">Profile</p>
+      <p class="nav-hide" id="personal-dashboard-nav-btn">Personal Dashboard</p>
+      <p class="nav-hide" id="leaderboard-nav-btn">Leaderboard</p>
       <p id="notifications-nav-btn">Notifications</p>
 
       <p id="logout-nav-btn">Logout</p>
@@ -1322,22 +1336,42 @@
     <div id="status-error-box" class="error-box">
       <h2>We couldn't get all users status at the moment!</h2>
       <p>
-        Something went wrong while fetchign all users status, please try again, we are
-        very sorry, we are working hard to fix this issue thank you!
+        Something went wrong while fetchign all users status, please try again,
+        we are very sorry, we are working hard to fix this issue thank you!
       </p>
       <button class="okay-status">Okay</button>
     </div>
 
-        <div id="admin-dashboard-error-box" class="error-box">
+    <div id="admin-dashboard-error-box" class="error-box">
       <h2>We couldn't get your admin dashboard at the moment!</h2>
       <p>
-        Something went wrong while fetchign the admin dashboard, please try again, we are
-        very sorry, we are working hard to fix this issue thank you!
+        Something went wrong while fetchign the admin dashboard, please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
       </p>
       <button class="okay-admin-dashboard">Okay</button>
     </div>
 
-   
+    <div id="personal-dashboard-error-box" class="error-box">
+      <h2>We couldn't get your personal dashboard at the moment!</h2>
+      <p>
+        Something went wrong while fetchign your personal dashboard, please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-personal-dashboard">Okay</button>
+    </div>
+
+    <div id="leaderboard-error-box" class="error-box">
+      <h2>We couldn't get the SafePLMUN leaderboard at the moment!</h2>
+      <p>
+        Something went wrong while fetching the SafePLMUN leaderboard, please try
+        again, we are very sorry, we are working hard to fix this issue thank
+        you!
+      </p>
+      <button class="okay-leaderboard">Okay</button>
+    </div>
+
     <img id="overview-img" src="./images/plmun overview.jpg" alt="" />
     <div class="safeplmun-guidelines">
       <div class="guidelines-header">

@@ -17,6 +17,8 @@ import { checkOnBuddiesRepository } from "./user.repositories.js";
 import { getNotofications } from "./user.repositories.js";
 import { requestMedicRepository } from "./user.repositories.js";
 import { getAllUserMedicalRequestRepository } from "./user.repositories.js";
+import { personalDashboard } from "./user.repositories.js";
+import { leaderboardRepository } from "./user.repositories.js";
 export async function reportAnIncidentService(userid: string, type: string, location:string){
     try{
        const data =  await reportAnIncidentRepository(userid, type, location);
@@ -216,6 +218,24 @@ export async function requestMedicService(userid: string, location: string, deta
 export async function getALLUSerMEdicRequestsService(userid: string){
     try{
         const data = await getAllUserMedicalRequestRepository(userid);
+        return data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+export async function personalDashboardService(userid: string){
+    try{
+        const data = await personalDashboard(userid);
+        return data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+export async function leaderboardService(){
+    try{
+        const data = await leaderboardRepository();
         return data;
     }catch(err){
         console.log(err);
